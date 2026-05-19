@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // wizard.jsx — 2-step contact form with Formspree submission
 // TODO: Replace YOUR_FORM_ID below — sign up at formspree.io, create a new form,
 //       set the recipient to info@autoskolakatka.cz, then paste your form ID here.
-const FORMSPREE = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORMSPREE = 'https://formspree.io/f/mojbjqel';
 
 function Wizard() {
   const [step, setStep] = useState(0);
