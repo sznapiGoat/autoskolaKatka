@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Autoškola Katka — řízení s lehkostí</title>
+<meta name="description" content="Autoškola Katka v Bílině a Chotějovicích. Výcvik skupin AM, A, B, C, T. Kondiční jízdy, přezkoušení po zákazu řízení. Lidský přístup od roku 2010." />
+<meta property="og:title" content="Autoškola Katka — řízení s lehkostí" />
+<meta property="og:description" content="Autoškola v Bílině a Chotějovicích. Výcvik skupin AM, A, B, C, T. Kondiční jízdy, přezkoušení po zákazu řízení." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Playfair Display"', 'serif'],
+          fraunces: ['"Fraunces"', 'serif'],
+          sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink: {
+            900: '#0E0F12',
+            800: '#15171C',
+            700: '#1E2128',
+            600: '#2A2D36',
+            500: '#4A4E5A',
+            400: '#7A7F8C',
+            300: '#A9ADB8',
+            200: '#D4D7DE',
+            100: '#EAECF0',
+            50:  '#F4F5F7',
+          },
+          snow: '#FAFAF7',
+          paper: '#F2EFEA',
+        },
+        boxShadow: {
+          'soft':   '0 1px 2px rgba(14,15,18,.04), 0 8px 24px rgba(14,15,18,.06)',
+          'lift':   '0 1px 2px rgba(14,15,18,.05), 0 18px 50px rgba(14,15,18,.10)',
+          'pop':    '0 2px 4px rgba(14,15,18,.06), 0 32px 80px rgba(14,15,18,.18)',
+          'inner-soft': 'inset 0 0 0 1px rgba(14,15,18,.06)',
+        },
+        borderRadius: {
+          '2xl': '1.25rem',
+          '3xl': '1.5rem',
+          '4xl': '2rem',
+          '5xl': '2.5rem',
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --accent: oklch(0.74 0.13 25);     /* Soft Coral */
+    --accent-ink: oklch(0.42 0.14 25); /* deeper coral for text on light */
+    --accent-soft: oklch(0.95 0.04 25);
+    --violet: oklch(0.62 0.18 295);
+    --bg: #FAFAF7;
+    --ink: #0E0F12;
+  }
+  html, body { background: var(--bg); color: var(--ink); }
+  body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .font-display { font-family: 'Playfair Display', serif; letter-spacing: -0.015em; }
+  .font-fraunces { font-family: 'Fraunces', serif; letter-spacing: -0.02em; }
+
+  /* Display headline italic accent */
+  .accent-italic { font-style: italic; color: var(--accent-ink); font-weight: 500; }
+
+  /* Glassmorphism nav */
+  .glass {
+    background: rgba(250, 250, 247, 0.62);
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+    backdrop-filter: saturate(160%) blur(18px);
+    border: 0.5px solid rgba(14,15,18,.06);
+    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 8px 28px rgba(14,15,18,.06);
+  }
+
+  /* Subtle radial brand glow */
+  .hero-glow {
+    background:
+      radial-gradient(60% 50% at 75% 30%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%),
+      radial-gradient(50% 60% at 15% 80%, color-mix(in oklab, var(--violet) 18%, transparent), transparent 60%);
+  }
+
+  /* Hide scrollbar on horizontal pricing */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+
+  /* Striped placeholder for imagery */
+  .placeholder-stripes {
+    background-image:
+      linear-gradient(135deg, rgba(14,15,18,.06) 0 1px, transparent 1px 14px);
+    background-color: #ECEAE3;
+  }
+  .placeholder-soft {
+    background-image:
+      linear-gradient(135deg, rgba(14,15,18,.05) 0 1px, transparent 1px 18px);
+    background-color: #E8E4DC;
+  }
+
+  /* Marquee for trust strip */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track { animation: marquee 40s linear infinite; }
+
+  /* Subtle car-key cursor on CTA */
+  .cta-primary {
+    background: var(--ink);
+    color: white;
+  }
+  .cta-primary:hover { background: #1d1f25; }
+
+  /* Pretty wrapping for headlines */
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+
+  /* Selection */
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* Focus ring */
+  :where(button, a, input, textarea, select):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  /* Subtle dotted "scroll" indicator */
+  @keyframes nudge { 0%,100%{transform: translateY(0)} 50%{transform:translateY(6px)} }
+  .nudge { animation: nudge 2.4s ease-in-out infinite; }
+
+  /* Progress tracker dotted line */
+  .progress-line {
+    background-image: radial-gradient(circle, rgba(14,15,18,.18) 1px, transparent 1.4px);
+    background-size: 10px 2px;
+    background-repeat: repeat-x;
+    background-position: 0 50%;
+  }
+
+  /* Smooth anchor scroll */
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body class="antialiased">
+<div id="root"></div>
+
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
