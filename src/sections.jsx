@@ -427,6 +427,7 @@ function Pricing() {
       label: 'Osobní automobily', icon: 'car',
       courses: [
         { eyebrow: 'Skupina B',          title: 'Osobní automobil', price: '20 000', kond: '700', featured: true },
+        { eyebrow: 'Rychlokurz · 6 týdnů', title: 'Skupina B — intenzivní', price: '27 000', kond: '700', note: '+ 7 000 Kč k ceně standardního kurzu B', key: 'B-rychlo' },
         { eyebrow: 'Skupina B78',        title: 'Automat',          price: '23 000', kond: '800' },
         { eyebrow: 'Doplňovací zkouška', title: 'B78 → B',          price: '6 000',  kond: '600' },
         { eyebrow: 'Sdružený kurz',      title: 'A2 + B',           price: '40 000' },
@@ -541,6 +542,7 @@ function Pricing() {
                   ['Opravná zkouška PPV', '100 Kč'],
                   ['Opravná zkouška OUV (C, CE)', '200 Kč'],
                   ['Opravná zkouška PJ', '400 Kč'],
+                  ['Opravná závěrečná zkouška (souhrnná)', '600 Kč'],
                 ].map(([label, val]) => (
                   <div key={label} className="flex justify-between gap-4 py-1.5 border-b border-ink-900/5">
                     <dt className="text-ink-600">{label}</dt>
@@ -555,7 +557,8 @@ function Pricing() {
                   ['Převod z jiné AŠ — sk. B, B+E, B78, B96', '3 000 Kč'],
                   ['Převod z jiné AŠ — ostatní skupiny', '5 000 Kč / skupinu'],
                   ['Zkouška po zákazu řízení', '6 000 Kč / skupinu'],
-                  ['Storno zahájeného výcviku', '3 000 Kč'],
+                  ['Storno kurzu nebo převod k jiné AŠ', '3 000 Kč'],
+                  ['Neomluvená hodina (< 1 h před lekcí)', '500 Kč'],
                   ['Výuka/výcvik v cizím jazyce', 'dle náročnosti, domluvou'],
                   ['Dárkový poukaz', 'platnost 365 dní od zakoupení'],
                 ].map(([label, val]) => (
@@ -646,6 +649,11 @@ function PricingCard({ c, icon }) {
         {c.kond && (
           <div className={`text-[13px] mt-1.5 ${featured ? 'text-white/55' : 'text-ink-400'}`}>
             kondiční {c.kond} Kč / h
+          </div>
+        )}
+        {c.note && (
+          <div className={`text-[12px] mt-1 ${featured ? 'text-white/45' : 'text-ink-400'}`}>
+            {c.note}
           </div>
         )}
       </div>
