@@ -61,8 +61,8 @@ function Wizard() {
   };
 
   const headings = [
-    ['Co se chceš učit?', 'Vyber kurz, který tě zajímá. Můžeš to ještě měnit.'],
-    ['Nech nám kontakt', 'Ozveme se do 24 hodin. Žádný spam.'],
+    ['Co vás zajímá?', 'Vyberte kurz, ať vím, s čím voláte. Můžete ještě změnit.'],
+    ['Nechte mi číslo', 'Zavolám vám zpět, obvykle do 24 hodin. Žádný spam.'],
   ];
 
   if (sent) {
@@ -79,11 +79,19 @@ function Wizard() {
             </svg>
           </div>
           <h2 className="font-display text-[40px] md:text-[52px] leading-tight">
-            Děkujeme za přihlášku!
+            Díky, ozvu se vám!
           </h2>
           <p className="mt-5 text-[17px] text-ink-500 leading-relaxed max-w-[38ch] mx-auto">
-            Ozveme se vám do 24 hodin na váš telefon.
+            Zavolám vám zpět na uvedené číslo, obvykle do 24 hodin.
           </p>
+          <a
+            href="tel:+420724974771"
+            className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-medium"
+            style={{ color: 'var(--accent-ink)' }}
+          >
+            Nechce se vám čekat? Zavolejte 724 974 771
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
           <button
             onClick={() => {
               setSent(false);
@@ -103,46 +111,44 @@ function Wizard() {
     <section id="prihlasit" className="py-20 md:py-32 relative" style={{ background: 'linear-gradient(180deg, var(--bg), #F1ECE3 100%)' }}>
       <div className="mx-auto max-w-5xl px-4">
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-          {/* Left rail */}
+          {/* Left rail — zavolat je nejrychlejší */}
           <div className="md:col-span-4">
             <div className="text-[12px] uppercase tracking-[0.18em] text-ink-400 flex items-center gap-2">
               <span className="w-6 h-px bg-ink-300" />
-              Průvodce přihláškou
+              Ozvěte se
             </div>
             <h2 className="font-display mt-4 text-[36px] md:text-[44px] leading-[1.05]">
-              Dva kroky,<br /><span className="accent-italic">žádné papíry.</span>
+              Nejraději si<br /><span className="accent-italic">popovídáme.</span>
             </h2>
             <p className="mt-5 text-[15px] text-ink-500 leading-relaxed max-w-[36ch]">
-              Vyplníš za 60 sekund. Nezávazné, bez platby předem.
+              Zavolejte a se vším vám ráda poradím — vysvětlím, co který kurz
+              obnáší, a rovnou domluvíme termín.
             </p>
 
-            <ol className="mt-10 space-y-3" aria-label="Postup přihlášky">
-              {headings.map(([h], i) => {
-                const done = i < step, active = i === step;
-                return (
-                  <li key={i}>
-                    <button
-                      onClick={() => i <= step && setStep(i)}
-                      aria-current={active ? 'step' : undefined}
-                      className={`w-full flex items-center gap-3 text-left rounded-2xl p-3 transition-colors ${active ? 'bg-white shadow-soft border border-ink-900/6' : 'border border-transparent hover:bg-white/40'}`}
-                    >
-                      <span
-                        className={`w-8 h-8 rounded-full grid place-items-center text-[12px] font-medium shrink-0 ${active ? 'text-snow' : done ? 'text-snow' : 'bg-ink-100 text-ink-500'}`}
-                        style={(active || done) ? { background: 'var(--ink)' } : {}}
-                        aria-hidden="true"
-                      >
-                        {done ? (
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12 5 5L20 7"/></svg>
-                        ) : (i + 1)}
-                      </span>
-                      <span className={`text-[14px] ${active ? 'text-ink-900' : done ? 'text-ink-700' : 'text-ink-400'}`}>
-                        {h}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
+            {/* Velké tlačítko pro zavolání */}
+            <a
+              href="tel:+420724974771"
+              className="mt-8 flex items-center gap-4 rounded-4xl p-5 shadow-lift text-snow transition-transform hover:-translate-y-0.5"
+              style={{ background: 'var(--ink)' }}
+              aria-label="Zavolat na číslo 724 974 771"
+            >
+              <span
+                className="w-12 h-12 rounded-2xl grid place-items-center shrink-0"
+                style={{ background: 'var(--accent)' }}
+                aria-hidden="true"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <span>
+                <span className="block text-[11px] uppercase tracking-[0.16em] text-white/50">Zavolejte</span>
+                <span className="block font-display text-[26px] leading-none mt-0.5">724 974 771</span>
+              </span>
+            </a>
+
+            <p className="mt-4 text-[13px] text-ink-400 leading-relaxed max-w-[34ch]">
+              Nezvedám, protože zrovna učím? Ozvu se zpět. Nebo mi{' '}
+              <span className="text-ink-600">níže nechte číslo</span> a zavolám vám sama.
+            </p>
           </div>
 
           {/* Right card */}
@@ -195,7 +201,7 @@ function Wizard() {
                     style={{ background: 'var(--accent-ink)' }}
                     aria-busy={loading}
                   >
-                    {loading ? 'Odesílám…' : 'Odeslat přihlášku'}
+                    {loading ? 'Odesílám…' : 'Ať mi zavolá'}
                     {!loading && (
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                     )}

@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+const PHONE = '724 974 771';
+const PHONE_HREF = 'tel:+420724974771';
+
+// Malá telefonní ikonka pro CTA tlačítka
+const PhoneIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+);
 
 // sections.jsx — Autoškola Katka landing
 // Sections: Nav, Hero, TrustStrip, Progress, Pricing, Instructors,
@@ -62,19 +71,19 @@ function Nav() {
 
           <div className="flex items-center gap-2">
             <a
-              href="tel:+420724974771"
-              className="hidden sm:inline-flex items-center gap-2 text-[13.5px] text-ink-700 px-3 py-2 rounded-xl hover:bg-black/5"
-              aria-label="Zavolat"
+              href="#cenik"
+              className="hidden sm:inline-flex items-center text-[13.5px] text-ink-600 px-3 py-2 rounded-xl hover:bg-black/5"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
-              724 974 771
+              Ceník
             </a>
             <a
-              href="#prihlasit"
-              className="cta-primary text-[13.5px] font-medium rounded-2xl px-4 py-2.5 inline-flex items-center gap-1.5"
+              href={PHONE_HREF}
+              className="cta-primary text-[13.5px] font-medium rounded-2xl px-4 py-2.5 inline-flex items-center gap-2"
+              aria-label={`Zavolat na ${PHONE}`}
             >
-              Zapsat se
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              <PhoneIcon />
+              <span className="hidden xs:inline sm:inline">Zavolat</span>
+              <span className="tabular-nums">{PHONE}</span>
             </a>
 
             {/* mobile menu */}
@@ -174,19 +183,25 @@ function Hero() {
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <a
+              href={PHONE_HREF}
+              className="cta-primary rounded-3xl px-6 py-4 text-[15px] font-medium inline-flex items-center justify-center gap-2.5 shadow-lift"
+              aria-label={`Zavolat na ${PHONE}`}
+            >
+              <PhoneIcon size={17} />
+              Zavolejte {PHONE}
+            </a>
+            <a
               href="#cenik"
-              className="cta-primary rounded-3xl px-6 py-4 text-[15px] font-medium inline-flex items-center justify-center gap-2 shadow-lift"
+              className="rounded-3xl px-6 py-4 text-[15px] font-medium border border-ink-900/10 hover:bg-black/5 inline-flex items-center justify-center gap-2"
             >
               Ceník a termíny
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
-            <a
-              href="#prihlasit"
-              className="rounded-3xl px-6 py-4 text-[15px] font-medium border border-ink-900/10 hover:bg-black/5 inline-flex items-center justify-center gap-2"
-            >
-              Nezávazná přihláška
-            </a>
           </div>
+          <p className="mt-3 text-[13.5px] text-ink-400">
+            Nejraději si popovídáme po telefonu — nebo{' '}
+            <a href="#prihlasit" className="text-ink-600 underline underline-offset-2 hover:text-ink-900">nechte číslo a zavoláme vám</a>.
+          </p>
         </div>
 
         {/* Hero visual */}
@@ -659,15 +674,65 @@ function PricingCard({ c, icon }) {
       </div>
 
       <a
-        href="#prihlasit"
+        href={PHONE_HREF}
         className={`mt-auto pt-2 inline-flex items-center gap-1.5 text-[13.5px] font-medium transition-colors ${
           featured ? 'text-white/80 hover:text-white' : 'text-ink-900 hover:text-ink-600'
         }`}
+        aria-label={`Zavolat kvůli kurzu ${c.title} na ${PHONE}`}
       >
-        Přihlásit se
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        <PhoneIcon size={13} />
+        Zeptat se — {PHONE}
       </a>
     </article>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CALL BAND — výzva k zavolání s reálnou fotkou vozidla
+// ─────────────────────────────────────────────────────────────────────────────
+function CallBand() {
+  return (
+    <section className="py-10 md:py-14">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="relative rounded-5xl overflow-hidden shadow-pop" style={{ background: 'var(--ink)' }}>
+          <div className="grid md:grid-cols-2">
+            {/* Text + telefon */}
+            <div className="order-2 md:order-1 p-8 md:p-12 text-snow flex flex-col justify-center">
+              <div className="text-[12px] uppercase tracking-[0.18em] text-white/40 flex items-center gap-2">
+                <span className="w-6 h-px bg-white/30" />
+                Nevíte, co vybrat?
+              </div>
+              <h2 className="font-display mt-4 text-[32px] md:text-[46px] leading-[1.04]">
+                Zavolejte a{' '}
+                <span className="italic" style={{ color: 'var(--accent)' }}>poradíme si.</span>
+              </h2>
+              <p className="mt-4 text-[15px] text-white/60 leading-relaxed max-w-[42ch]">
+                Řekněte nám, co potřebujete — vybereme správnou skupinu, řekneme cenu
+                i nejbližší termín. Nezávazně, v klidu, po telefonu.
+              </p>
+              <a
+                href={PHONE_HREF}
+                className="mt-8 inline-flex items-center gap-3 self-start rounded-2xl px-6 py-4 text-[16px] font-medium bg-snow text-ink-900 hover:bg-white transition-colors shadow-lift"
+                aria-label={`Zavolat na ${PHONE}`}
+              >
+                <PhoneIcon size={18} />
+                {PHONE}
+              </a>
+              <div className="mt-4 text-[13px] text-white/40">Po–Ne · nezvedneme? Zavoláme zpět.</div>
+            </div>
+
+            {/* Reálná fotka vozu (na dveřích je telefonní číslo) */}
+            <div className="order-1 md:order-2 relative min-h-[240px] md:min-h-[380px]">
+              <img
+                src="/02112011402.jpg"
+                alt="Výcvikové vozidlo Autoškoly Katka s telefonním číslem na dveřích"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -725,13 +790,22 @@ function Instructors() {
               Specializujeme se na přezkoušení odborné způsobilosti po zákazu řízení nebo
               po dosažení 12 bodů.
             </p>
-            <a
-              href="#prihlasit"
-              className="inline-flex items-center gap-2 text-[14.5px] font-medium cta-primary rounded-2xl px-5 py-3 shadow-lift"
-            >
-              Nezávazná přihláška
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href={PHONE_HREF}
+                className="inline-flex items-center justify-center gap-2 text-[14.5px] font-medium cta-primary rounded-2xl px-5 py-3 shadow-lift"
+                aria-label={`Zavolat na ${PHONE}`}
+              >
+                <PhoneIcon />
+                Zavolejte {PHONE}
+              </a>
+              <a
+                href="#prihlasit"
+                className="inline-flex items-center justify-center gap-2 text-[14.5px] font-medium rounded-2xl px-5 py-3 border border-ink-900/12 hover:bg-black/5"
+              >
+                Nechat číslo
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -895,16 +969,19 @@ function Footer() {
             <p className="mt-5 text-[14.5px] text-white/60 max-w-[40ch] leading-relaxed">
               Autoškola v Bílině - Chotějovicích. Učíme řídit od roku 2010. Trpělivě, moderně, bez křiku.
             </p>
-            {/* TODO: doplnit reálné URL FB a IG */}
-            <div className="mt-8 flex items-center gap-2">
-              <a href="#" className="w-10 h-10 rounded-2xl grid place-items-center text-[12px] border border-white/10 hover:bg-white/5">FB</a>
-              <a href="#" className="w-10 h-10 rounded-2xl grid place-items-center text-[12px] border border-white/10 hover:bg-white/5">IG</a>
-            </div>
+            <a
+              href={PHONE_HREF}
+              className="mt-7 inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-[15px] font-medium text-ink-900 bg-snow hover:bg-white transition-colors"
+              aria-label={`Zavolat na ${PHONE}`}
+            >
+              <PhoneIcon size={16} />
+              Zavolejte {PHONE}
+            </a>
           </div>
 
           <FooterCol title="Kurzy" links={['Skupina B · B78', 'Skupiny A / A1 / A2', 'B+E · soupravy', 'Skupiny C · C+E', 'Skupina T (traktory)', 'Kondiční jízdy']} />
           <FooterCol title="Služby" links={['Přezkoušení po 12 b.', 'Po zákazu řízení', 'Školení referenčních řidičů', 'Převod z jiné AŠ', 'Cizojazyčný výcvik']} />
-          <FooterCol title="Kontakt" links={['+420 724 974 771', 'autoskolakatka.cz', 'Smetanova 18', 'Bílina - Chotějovice', '418 04']} />
+          <FooterCol title="Kontakt" links={[['+420 724 974 771', PHONE_HREF], 'Smetanova 18', 'Bílina - Chotějovice', '418 04']} />
         </div>
 
         <div className="mt-16 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[12.5px] text-white/50">
@@ -913,9 +990,8 @@ function Footer() {
             <div className="mt-0.5 text-[11px] text-white/30">Provozovatel: Kateřina Krajníková</div>
           </div>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-white">Zásady soukromí</a>
-            <a href="#" className="hover:text-white">Obchodní podmínky</a>
-            <a href="#" className="hover:text-white">Cookies</a>
+            <Link to="/zasady-soukromi" className="hover:text-white">Zásady soukromí</Link>
+            <a href={PHONE_HREF} className="hover:text-white">Kontakt</a>
           </div>
         </div>
       </div>
@@ -928,12 +1004,21 @@ function FooterCol({ title, links }) {
     <div className="md:col-span-2">
       <div className="text-[11.5px] uppercase tracking-[0.16em] text-white/40">{title}</div>
       <ul className="mt-5 space-y-2.5 text-[14px]">
-        {links.map((l) => (
-          <li key={l}><a href="#" className="text-white/80 hover:text-white">{l}</a></li>
-        ))}
+        {links.map((l) => {
+          const [label, href] = Array.isArray(l) ? l : [l, null];
+          return (
+            <li key={label}>
+              {href ? (
+                <a href={href} className="text-white/80 hover:text-white">{label}</a>
+              ) : (
+                <span className="text-white/70">{label}</span>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 }
 
-export { Nav, Hero, Ucebna, TrustStrip, Progress, Pricing, Instructors, Testimonials, FAQ, Footer, SectionLabel };
+export { Nav, Hero, Ucebna, TrustStrip, Progress, Pricing, CallBand, Instructors, Testimonials, FAQ, Footer, SectionLabel };
