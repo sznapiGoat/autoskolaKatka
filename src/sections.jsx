@@ -351,6 +351,22 @@ function Progress() {
       <div className="mx-auto max-w-6xl px-4">
         <SectionLabel eyebrow="Cesta žáka" title={<>Z nuly k řidičáku<br/><span className="accent-italic">v pěti krocích.</span></>} />
 
+        {/* Atmosférický obrázek cesty */}
+        <div className="mt-10 relative rounded-5xl overflow-hidden shadow-lift" style={{ height: 'clamp(180px, 26vw, 300px)' }}>
+          <img
+            src="/road-autumn.jpg"
+            alt="Otevřená silnice — vaše cesta za řidičákem"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(14,15,18,.55), rgba(14,15,18,.05) 60%)' }} />
+          <div className="absolute left-6 bottom-6 md:left-8 md:bottom-8 max-w-[30ch]">
+            <div className="text-snow font-display text-[22px] md:text-[28px] leading-tight">
+              Vedeme vás celou cestou —<br />krok za krokem, vaším tempem.
+            </div>
+          </div>
+        </div>
+
         {/* Desktop track */}
         <div className="mt-14 hidden md:block">
           <div className="relative">
@@ -785,6 +801,14 @@ function Instructors() {
 
           {/* Text */}
           <div className="space-y-5 text-[16px] text-ink-600 leading-relaxed">
+            <div className="rounded-4xl overflow-hidden shadow-soft" style={{ aspectRatio: '16/10' }}>
+              <img
+                src="/driving-hands.jpg"
+                alt="Za volantem — klidná, jistá jízda"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
             <p>
               Nabízíme výcvik skupiny B, kondiční jízdy a školení referenčních řidičů.
               Specializujeme se na přezkoušení odborné způsobilosti po zákazu řízení nebo

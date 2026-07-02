@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem \"c:\\\\Users\\\\sznap\\\\Downloads\\\\autoskolaKatka_opraveno\\\\public\")",
+      "Bash(Select-Object Name)",
+      "Bash(npm run *)"
+    ]
+  }
+}
