@@ -129,7 +129,7 @@ function Hero() {
       <div className="relative mx-auto max-w-6xl px-4">
 
         {/* Eyebrow */}
-        <div className="flex justify-center md:justify-start">
+        <div className="hero-in flex justify-center md:justify-start" style={{ animationDelay: '.05s' }}>
           <div className="inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-[12.5px] text-ink-700">
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
             Nový kurz <span className="text-ink-400">·</span> každý týden nový termín
@@ -137,14 +137,14 @@ function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="font-display mt-6 text-[44px] sm:text-[64px] md:text-[88px] leading-[0.98] tracking-tight text-ink-900">
+        <h1 className="hero-in font-display mt-6 text-[44px] sm:text-[64px] md:text-[88px] leading-[0.98] tracking-tight text-ink-900" style={{ animationDelay: '.12s' }}>
           Řidičák,<br />
           <span className="accent-italic">který sedne</span>
           <br />jako rukavice.
         </h1>
 
         {/* Sub + Groups + CTAs */}
-        <div className="mt-8 md:mt-10">
+        <div className="hero-in mt-8 md:mt-10" style={{ animationDelay: '.2s' }}>
           <strong className="font-display text-[26px] md:text-[34px] text-ink-900 block leading-tight mb-3">
             Autoškola Katka
           </strong>
@@ -202,51 +202,34 @@ function Hero() {
             Nejraději si popovídáme po telefonu — nebo{' '}
             <a href="#prihlasit" className="text-ink-600 underline underline-offset-2 hover:text-ink-900">nechte číslo a zavoláme vám</a>.
           </p>
+
+          {/* Trust chip — reference */}
+          <a href="#reference" className="mt-6 inline-flex items-center gap-2.5 text-[13px] text-ink-500 hover:text-ink-800 transition-colors">
+            <span className="flex gap-0.5" aria-hidden="true">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--accent)' }}>
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </span>
+            Absolventi nás doporučují — přečtěte si reference
+          </a>
         </div>
 
-        {/* Hero visual */}
-        <div className="mt-12 md:mt-16 grid grid-cols-12 gap-3 md:gap-4">
-          {/* Main image */}
-          <div className="col-span-12 md:col-span-7 rounded-4xl overflow-hidden relative shadow-soft" style={{ minHeight: '340px' }}>
+        {/* Hero visual — jeden silný snímek výcvikového vozu */}
+        <div className="hero-in mt-12 md:mt-16" style={{ animationDelay: '.3s' }}>
+          <div className="rounded-5xl overflow-hidden relative shadow-lift" style={{ aspectRatio: '16 / 9' }}>
             <img
-              src="/image%20autoskolakatka.png"
+              src="/image-autoskolakatka.jpg"
               alt="Výcvikový vůz Autoškoly Katka"
               className="absolute inset-0 w-full h-full object-cover"
+              fetchpriority="high"
             />
-            {/* floating glass card */}
+            {/* floating glass card — cena */}
             <div className="absolute left-4 bottom-4 md:left-6 md:bottom-6 glass rounded-2xl px-4 py-3 max-w-[260px]">
               <div className="text-[11px] uppercase tracking-[0.14em] text-ink-400">Skupina B od</div>
               <div className="font-display text-3xl mt-0.5">20 000<span className="text-ink-300 text-lg"> Kč</span></div>
             </div>
-          </div>
-
-          {/* Right column: collage */}
-          <div className="col-span-12 md:col-span-5 flex flex-col">
-            {/* Collage — motocykly + nákladní blended */}
-            <div className="rounded-4xl overflow-hidden relative bg-ink-100 shadow-soft flex-1" style={{ minHeight: '200px' }}>
-              <img
-                src="/magnum_mack_sk_c_a_c_e.jpg"
-                alt="Nákladní automobil — skupina C, C+E"
-                className="absolute top-0 left-0 w-3/5 h-full object-cover"
-                style={{
-                  maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%)',
-                }}
-              />
-              <img
-                src="/gs_500e_ska18.jpg"
-                alt="Motocykl — skupina A"
-                className="absolute top-0 right-0 w-3/5 h-full object-cover"
-                style={{
-                  maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%)',
-                }}
-              />
-              <div className="absolute bottom-3 left-3 glass rounded-xl px-3 py-1.5 text-[11px] text-ink-700 font-medium">
-                Motocykly · Nákladní
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -337,11 +320,11 @@ function TrustStrip() {
 // ─────────────────────────────────────────────────────────────────────────────
 function Progress() {
   const steps = [
-    { n: '01', t: 'Přihláška', d: 'Vyplníš žádost o ŘO. Zdravotní posudek doneseme společně.' },
+    { n: '01', t: 'Přihláška', d: 'Vyplníte žádost o ŘO. Zdravotní posudek doneseme společně.' },
     { n: '02', t: 'Teorie', d: 'Pravidla provozu, údržba vozidla, první pomoc — v učebně Smetanova 18, Bílina.' },
     { n: '03', t: 'Auto­cvičiště', d: 'První kontakt s vozem v bezpečném prostředí cvičiště.' },
-    { n: '04', t: 'Jízdy v provozu', d: 'Předepsaný počet hodin v reálném provozu. Tempo si nastavíš.' },
-    { n: '05', t: 'Zkouška', d: 'Test, jízda, technika — a po složení odjíždíš s řidičákem.' },
+    { n: '04', t: 'Jízdy v provozu', d: 'Předepsaný počet hodin v reálném provozu. Tempo si nastavíte.' },
+    { n: '05', t: 'Zkouška', d: 'Test, jízda, technika — a po složení odjíždíte s řidičákem.' },
   ];
 
   const [active, setActive] = useState(2);
@@ -398,7 +381,7 @@ function Progress() {
           </div>
 
           <div className="mt-10 flex items-center justify-center gap-3 text-[13px] text-ink-500">
-            <span>Klikni na krok pro zvýraznění</span>
+            <span>Klikněte na krok pro zvýraznění</span>
           </div>
         </div>
 
@@ -501,7 +484,7 @@ function Pricing() {
       <div className="mx-auto max-w-6xl px-4">
         <SectionLabel
           eyebrow="Ceník & kurzy"
-          title={<>Vyber si <span className="accent-italic">svůj</span><br/>řidičák.</>}
+          title={<>Vyberte si <span className="accent-italic">svůj</span><br/>řidičák.</>}
         />
 
         {/* Tab switcher */}

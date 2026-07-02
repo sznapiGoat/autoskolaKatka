@@ -42,6 +42,26 @@ function App() {
     s.textContent = `.font-display{font-family:${f};letter-spacing:${t.displayFont === 'inter' ? '-0.03em' : '-0.015em'};font-weight:${t.displayFont === 'inter' ? '600' : '500'};}`;
   }, [t.accent, t.displayFont]);
 
+  // Jemné odhalování sekcí při scrollu (hero necháváme hned viditelné)
+  React.useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const targets = Array.from(document.querySelectorAll('main > section')).slice(1);
+    targets.forEach((el) => el.classList.add('reveal'));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+    );
+    targets.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="relative">
       <Nav />
