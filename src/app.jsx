@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Hero, Ucebna, TrustStrip, Progress, Pricing, Instructors, Testimonials, FAQ, Footer } from './sections';
+import { Nav, Hero, Ucebna, TrustStrip, Progress, Pricing, CallBand, Instructors, Testimonials, FAQ, Footer } from './sections';
 import { Wizard } from './wizard';
 import { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakToggle } from './tweaks-panel';
 
@@ -51,6 +51,7 @@ function App() {
         <TrustStrip />
         <Progress />
         <Pricing />
+        <CallBand />
         <Instructors />
         <Testimonials />
         <Wizard />
@@ -100,12 +101,16 @@ function StickyMobileCta() {
   return (
     <div className="md:hidden fixed bottom-3 inset-x-3 z-30 glass rounded-3xl p-2 flex items-center justify-between gap-2 shadow-pop">
       <div className="pl-3">
-        <div className="text-[11px] uppercase tracking-[0.14em] text-ink-400">Skupina B</div>
-        <div className="font-display text-[18px] leading-none mt-0.5">20 000 Kč</div>
+        <div className="text-[11px] uppercase tracking-[0.14em] text-ink-400">Zavolejte a domluvíme se</div>
+        <div className="font-display text-[18px] leading-none mt-0.5">Autoškola Katka</div>
       </div>
-      <a href="#prihlasit" className="cta-primary rounded-2xl px-4 py-3 text-[13.5px] font-medium inline-flex items-center gap-1.5">
-        Přihlásit se
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a
+        href="tel:+420724974771"
+        className="cta-primary rounded-2xl px-4 py-3 text-[13.5px] font-medium inline-flex items-center gap-2 shrink-0"
+        aria-label="Zavolat na 724 974 771"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+        724 974 771
       </a>
     </div>
   );
