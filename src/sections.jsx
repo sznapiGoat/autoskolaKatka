@@ -228,7 +228,7 @@ function Hero() {
             {/* floating glass card — cena */}
             <div className="absolute left-4 bottom-4 md:left-6 md:bottom-6 glass rounded-2xl px-4 py-3 max-w-[260px]">
               <div className="text-[11px] uppercase tracking-[0.14em] text-ink-400">Skupina B od</div>
-              <div className="font-display text-3xl mt-0.5">20 000<span className="text-ink-300 text-lg"> Kč</span></div>
+              <div className="font-display text-3xl mt-0.5">21 000<span className="text-ink-300 text-lg"> Kč</span></div>
             </div>
           </div>
         </div>
@@ -402,6 +402,34 @@ function Progress() {
             </li>
           ))}
         </ol>
+
+        {/* Dokumenty ke stažení */}
+        <div className="mt-12 rounded-3xl bg-white border border-ink-900/5 p-5 md:p-6 shadow-soft">
+          <div className="text-[12px] uppercase tracking-[0.18em] text-ink-400 flex items-center gap-2">
+            <span className="w-6 h-px bg-ink-300" />
+            Dokumenty ke stažení
+          </div>
+          <div className="mt-4 flex flex-col md:flex-row gap-3">
+            {[
+              ['Přihláška do autoškoly (žádost o přijetí k výuce a výcviku)', '/prihlaska-do-autoskoly.pdf'],
+              ['Lékařský posudek o zdravotní způsobilosti', '/lekarsky-posudek.pdf'],
+            ].map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener"
+                className="flex items-center gap-3 rounded-2xl border border-ink-900/8 bg-white px-4 py-3 text-[14px] text-ink-700 hover:text-ink-900 hover:border-ink-900/20 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-ink-400"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                {label}
+              </a>
+            ))}
+          </div>
+          <p className="mt-3 text-[13px] text-ink-500">
+            Oba formuláře si můžete vytisknout, vyplnit a přinést s sebou — nebo je vyplníme společně na místě.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -440,8 +468,8 @@ function Pricing() {
     {
       label: 'Osobní automobily', icon: 'car',
       courses: [
-        { eyebrow: 'Skupina B',          title: 'Osobní automobil', price: '20 000', kond: '700', featured: true },
-        { eyebrow: 'Rychlokurz · 6 týdnů', title: 'Skupina B — intenzivní', price: '27 000', kond: '700', note: '+ 7 000 Kč k ceně standardního kurzu B', key: 'B-rychlo' },
+        { eyebrow: 'Skupina B',          title: 'Osobní automobil', price: '21 000', kond: '700', featured: true },
+        { eyebrow: 'Rychlokurz · 6 týdnů', title: 'Skupina B — intenzivní', price: '27 000', kond: '700', note: '+ 6 000 Kč k ceně standardního kurzu B', key: 'B-rychlo' },
         { eyebrow: 'Skupina B78',        title: 'Automat',          price: '23 000', kond: '800' },
         { eyebrow: 'Doplňovací zkouška', title: 'B78 → B',          price: '6 000',  kond: '600' },
         { eyebrow: 'Sdružený kurz',      title: 'A2 + B',           price: '40 000' },
