@@ -6,11 +6,11 @@ const FORMSPREE = 'https://formspree.io/f/xjgzgvod';
 
 const COURSE_OPTIONS = [
   ['', 'Nevím / poradíte mi'],
-  ['B', 'Skupina B — osobní auto'],
-  ['A', 'Motocykl — A / A1 / A2'],
+  ['B', 'Skupina B (osobní auto)'],
+  ['A', 'Motocykl A / A1 / A2'],
   ['B+E', 'B s přívěsem'],
-  ['C', 'Nákladní — C / C+E'],
-  ['T', 'Traktor — T'],
+  ['C', 'Nákladní C / C+E'],
+  ['T', 'Traktor (T)'],
   ['KOND', 'Kondiční jízdy'],
   ['PREZ', 'Přezkoušení (12 bodů / zákaz)'],
 ];
@@ -122,7 +122,7 @@ function Wizard() {
               Nejraději si<br /><span className="accent-italic">popovídáme.</span>
             </h2>
             <p className="mt-5 text-[15px] text-ink-500 leading-relaxed max-w-[38ch]">
-              Zavolejte a se vším vám ráda poradím — vysvětlím, co který kurz
+              Zavolejte a se vším vám ráda poradím. Vysvětlím, co který kurz
               obnáší, a rovnou domluvíme termín.
             </p>
 

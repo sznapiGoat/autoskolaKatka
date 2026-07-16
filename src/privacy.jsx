@@ -9,7 +9,7 @@ function Privacy() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
-    document.title = 'Zásady soukromí — Autoškola Katka';
+    document.title = 'Zásady soukromí | Autoškola Katka';
     return () => { document.title = prev; };
   }, []);
 
@@ -61,7 +61,7 @@ function Privacy() {
           <div className="mt-12 space-y-10">
             <Section n="1" title="Kdo údaje zpracovává (správce)">
               <p>
-                Správcem osobních údajů je <strong className="text-ink-800">Kateřina Krajníková — Autoškola Katka</strong>,
+                Správcem osobních údajů je <strong className="text-ink-800">Kateřina Krajníková (Autoškola Katka)</strong>,
                 Smetanova&nbsp;18, 418&nbsp;04 Bílina&nbsp;– Chotějovice.
               </p>
               <p>
@@ -107,13 +107,13 @@ function Privacy() {
             <Section n="5" title="Komu se údaje dostanou">
               <p>
                 Odeslání formuláře technicky zajišťuje služba <strong className="text-ink-800">Formspree</strong>{' '}
-                (Formspree, Inc., USA) jako zpracovatel — pouze doručí zprávu do naší schránky.
+                (Formspree, Inc., USA) jako zpracovatel, který pouze doručí zprávu do naší schránky.
                 Vaše údaje <strong className="text-ink-800">nepředáváme</strong> nikomu dalšímu pro
                 marketing ani je neprodáváme.
               </p>
               <p className="mt-3">
                 Web dále načítá písma ze služby <strong className="text-ink-800">Google Fonts</strong>{' '}
-                (Google Ireland Ltd.) — při načtení stránky je tak Googlu technicky předána vaše
+                (Google Ireland Ltd.). Při načtení stránky je tak Googlu technicky předána vaše
                 IP adresa. Google ji dle svých podmínek nevyužívá k profilování návštěvníků tohoto webu.
               </p>
             </Section>
@@ -139,7 +139,7 @@ function Privacy() {
           <div className="mt-16 rounded-4xl bg-white border border-ink-900/5 shadow-soft p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <div className="font-display text-[22px]">Máte dotaz k údajům?</div>
-              <p className="text-[14px] text-ink-500 mt-1">Nejjednodušší je zavolat — vše vyřídíme po telefonu.</p>
+              <p className="text-[14px] text-ink-500 mt-1">Nejjednodušší je zavolat, vše vyřídíme po telefonu.</p>
             </div>
             <a
               href="tel:+420724974771"

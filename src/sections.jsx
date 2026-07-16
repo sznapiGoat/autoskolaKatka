@@ -201,7 +201,7 @@ function Hero() {
             </a>
           </div>
           <p className="mt-3 text-[13.5px] text-ink-400">
-            Nejraději si popovídáme po telefonu — nebo{' '}
+            Nejraději si popovídáme po telefonu. Nebo{' '}
             <a href="#prihlasit" className="text-ink-600 underline underline-offset-2 hover:text-ink-900">nechte číslo a zavoláme vám</a>.
           </p>
 
@@ -214,7 +214,7 @@ function Hero() {
                 </svg>
               ))}
             </span>
-            Absolventi nás doporučují — přečtěte si reference
+            Absolventi nás doporučují, přečtěte si reference
           </a>
         </div>
 
@@ -330,10 +330,10 @@ function TrustStrip() {
 function Progress() {
   const steps = [
     { n: '01', t: 'Přihláška', d: 'Vyplníte žádost o ŘO. Zdravotní posudek doneseme společně.' },
-    { n: '02', t: 'Teorie', d: 'Pravidla provozu, údržba vozidla, první pomoc — v učebně Smetanova 18, Bílina.' },
+    { n: '02', t: 'Teorie', d: 'Pravidla provozu, údržba vozidla a první pomoc v učebně Smetanova 18, Bílina.' },
     { n: '03', t: 'Auto­cvičiště', d: 'První kontakt s vozem v bezpečném prostředí cvičiště.' },
     { n: '04', t: 'Jízdy v provozu', d: 'Předepsaný počet hodin v reálném provozu. Tempo si nastavíte.' },
-    { n: '05', t: 'Zkouška', d: 'Test, jízda, technika — a po složení odjíždíte s řidičákem.' },
+    { n: '05', t: 'Zkouška', d: 'Test, jízda a technika. Po složení odjíždíte s řidičákem.' },
   ];
 
   const [active, setActive] = useState(2);
@@ -347,14 +347,14 @@ function Progress() {
         <div className="mt-10 relative rounded-5xl overflow-hidden shadow-lift" style={{ height: 'clamp(180px, 26vw, 300px)' }}>
           <img
             src="/road-autumn.jpg"
-            alt="Otevřená silnice — vaše cesta za řidičákem"
+            alt="Otevřená silnice, vaše cesta za řidičákem"
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(14,15,18,.55), rgba(14,15,18,.05) 60%)' }} />
           <div className="absolute left-6 bottom-6 md:left-8 md:bottom-8 max-w-[30ch]">
             <div className="text-snow font-display text-[22px] md:text-[28px] leading-tight">
-              Vedeme vás celou cestou —<br />krok za krokem, vaším tempem.
+              Vedeme vás celou cestou,<br />krok za krokem, vaším tempem.
             </div>
           </div>
         </div>
@@ -436,7 +436,7 @@ function Progress() {
             ))}
           </div>
           <p className="mt-3 text-[13px] text-ink-500">
-            Oba formuláře si můžete vytisknout, vyplnit a přinést s sebou — nebo je vyplníme společně na místě.
+            Oba formuláře si můžete vytisknout, vyplnit a přinést s sebou. Nebo je vyplníme společně na místě.
           </p>
         </div>
       </div>
@@ -478,7 +478,7 @@ function Pricing() {
       label: 'Osobní automobily', icon: 'car',
       courses: [
         { eyebrow: 'Skupina B',          title: 'Osobní automobil', price: '21 000', kond: '700', featured: true },
-        { eyebrow: 'Rychlokurz · 6 týdnů', title: 'Skupina B — intenzivní', price: '27 000', kond: '700', note: '+ 6 000 Kč k ceně standardního kurzu B', key: 'B-rychlo' },
+        { eyebrow: 'Rychlokurz · 6 týdnů', title: 'Skupina B intenzivní', price: '27 000', kond: '700', note: '+ 6 000 Kč k ceně standardního kurzu B', key: 'B-rychlo' },
         { eyebrow: 'Skupina B78',        title: 'Automat',          price: '23 000', kond: '800' },
         { eyebrow: 'Doplňovací zkouška', title: 'B78 → B',          price: '6 000',  kond: '600' },
         { eyebrow: 'Sdružený kurz',      title: 'A2 + B',           price: '40 000' },
@@ -605,8 +605,8 @@ function Pricing() {
               <div className="text-[12px] text-ink-400 mb-4">hradí se autoškole</div>
               <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-1 text-[13.5px]">
                 {[
-                  ['Převod z jiné AŠ — sk. B, B+E, B78, B96', '3 000 Kč'],
-                  ['Převod z jiné AŠ — ostatní skupiny', '5 000 Kč / skupinu'],
+                  ['Převod z jiné AŠ (sk. B, B+E, B78, B96)', '3 000 Kč'],
+                  ['Převod z jiné AŠ (ostatní skupiny)', '5 000 Kč / skupinu'],
                   ['Zkouška po zákazu řízení', '6 000 Kč / skupinu'],
                   ['Storno kurzu nebo převod k jiné AŠ', '3 000 Kč'],
                   ['Neomluvená hodina (< 1 h před lekcí)', '500 Kč'],
@@ -625,7 +625,7 @@ function Pricing() {
 
         <p className="mt-5 text-[13px] text-ink-400 max-w-[70ch]">
           Ceník platný od 1.&nbsp;3.&nbsp;2026. V&nbsp;cenách kurzu není zahrnut poplatek za závěrečnou zkoušku.
-          Ceny jsou v&nbsp;Kč včetně DPH&nbsp;— nejsme plátci DPH. Ke každému žadateli přistupujeme individuálně,
+          Ceny jsou v&nbsp;Kč včetně DPH, nejsme plátci DPH. Ke každému žadateli přistupujeme individuálně,
           cena nemusí být konečná. Dárkový poukaz propadá po 365 dnech bez nároku na vrácení ceny.
         </p>
       </div>
@@ -717,7 +717,7 @@ function PricingCard({ c, icon }) {
         aria-label={`Zavolat kvůli kurzu ${c.title} na ${PHONE}`}
       >
         <PhoneIcon size={13} />
-        Zeptat se — {PHONE}
+        Zeptat se · {PHONE}
       </a>
     </article>
   );
@@ -743,7 +743,7 @@ function CallBand() {
                 <span className="italic" style={{ color: 'var(--accent)' }}>poradíme si.</span>
               </h2>
               <p className="mt-4 text-[15px] text-white/60 leading-relaxed max-w-[42ch]">
-                Řekněte nám, co potřebujete — vybereme správnou skupinu, řekneme cenu
+                Řekněte nám, co potřebujete. Vybereme správnou skupinu, řekneme cenu
                 i nejbližší termín. Nezávazně, v klidu, po telefonu.
               </p>
               <a
@@ -831,7 +831,7 @@ function Instructors() {
             <div className="rounded-4xl overflow-hidden shadow-soft" style={{ aspectRatio: '16/10' }}>
               <img
                 src="/driving-hands.jpg"
-                alt="Za volantem — klidná, jistá jízda"
+                alt="Za volantem, klidná a jistá jízda"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -965,9 +965,9 @@ function FAQ() {
     { q: 'Lze platit na splátky?', a: 'Ano, splátky jsou možné přímo přes autoškolu bez navýšení.' },
     { q: 'Mohu absolvovat výcvik v cizím jazyce?', a: 'Ano. Cena se domluví individuálně před začátkem kurzu.' },
     { q: 'Co když u zkoušky neuspěji?', a: 'Opravné zkoušky: PPV 100 Kč, OUV (C, CE) 200 Kč, praktická jízda 400 Kč. Doplňující jízdy účtujeme dle sazby kondiční jízdy příslušné skupiny.' },
-    { q: 'Jdu po dosažení 12 bodů?', a: 'Stačí samotné přezkoušení odborné způsobilosti — cvičné jízdy nejsou povinné. Přineste psychologické vyšetření a výpis z karty řidiče. Doklad o přezkoušení nesmí být starší 30 dní.' },
+    { q: 'Jdu po dosažení 12 bodů?', a: 'Stačí samotné přezkoušení odborné způsobilosti, cvičné jízdy nejsou povinné. Přineste psychologické vyšetření a výpis z karty řidiče. Doklad o přezkoušení nesmí být starší 30 dní.' },
     { q: 'Jdu po zákazu řízení?', a: 'Přezkoušení absolvujete po skončení zákazu činnosti. Přineste rozsudek soudu nebo rozhodnutí správního orgánu, výpis z karty řidiče, žádost do autoškoly a posudek o zdravotní způsobilosti.' },
-    { q: 'Přecházím z jiné autoškoly — jak to funguje?', a: 'Převod na zkoušky: 3 000 Kč pro sk. B, B+E, B78, B96. Pro ostatní skupiny 5 000 Kč za každou skupinu.' },
+    { q: 'Jak funguje přechod z jiné autoškoly?', a: 'Převod na zkoušky: 3 000 Kč pro sk. B, B+E, B78, B96. Pro ostatní skupiny 5 000 Kč za každou skupinu.' },
     { q: 'Platí se za dárkový poukaz?', a: 'Dárkový poukaz má platnost 365 dní od zakoupení. Po uplynutí doby poukaz propadá bez nároku na vrácení ceny.' },
   ];
   const [open, setOpen] = useState(0);
