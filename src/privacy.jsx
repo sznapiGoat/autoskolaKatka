@@ -8,7 +8,9 @@ import { Footer } from './sections';
 function Privacy() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    const prev = document.title;
     document.title = 'Zásady soukromí — Autoškola Katka';
+    return () => { document.title = prev; };
   }, []);
 
   return (
@@ -108,6 +110,11 @@ function Privacy() {
                 (Formspree, Inc., USA) jako zpracovatel — pouze doručí zprávu do naší schránky.
                 Vaše údaje <strong className="text-ink-800">nepředáváme</strong> nikomu dalšímu pro
                 marketing ani je neprodáváme.
+              </p>
+              <p className="mt-3">
+                Web dále načítá písma ze služby <strong className="text-ink-800">Google Fonts</strong>{' '}
+                (Google Ireland Ltd.) — při načtení stránky je tak Googlu technicky předána vaše
+                IP adresa. Google ji dle svých podmínek nevyužívá k profilování návštěvníků tohoto webu.
               </p>
             </Section>
 

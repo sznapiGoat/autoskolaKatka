@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 const PHONE = '724 974 771';
 const PHONE_HREF = 'tel:+420724974771';
+const WHATSAPP_HREF = 'https://wa.me/420724974771';
+const MAPS_HREF = 'https://www.google.com/maps/search/?api=1&query=Auto%C5%A1kola+Katka%2C+Smetanova+18%2C+B%C3%ADlina';
 
 // Malá telefonní ikonka pro CTA tlačítka
 const PhoneIcon = ({ size = 14 }) => (
@@ -266,6 +268,8 @@ function Ucebna() {
               src="/04102011381.jpg"
               alt="Učebna autoškoly Katka"
               className="w-full h-full object-cover"
+              loading="lazy"
+              width="1200" height="900"
             />
           </div>
           <div className="rounded-4xl overflow-hidden shadow-soft" style={{ aspectRatio: '4/3' }}>
@@ -273,11 +277,16 @@ function Ucebna() {
               src="/04102011382.jpg"
               alt="Učebna autoškoly Katka"
               className="w-full h-full object-cover"
+              loading="lazy"
+              width="1200" height="900"
             />
           </div>
         </div>
         <p className="mt-5 text-[14px] text-ink-400">
-          Výuka teorie probíhá v&nbsp;učebně na adrese Smetanova&nbsp;18, Bílina.
+          Výuka teorie probíhá v&nbsp;učebně na adrese Smetanova&nbsp;18, Bílina.{' '}
+          <a href={MAPS_HREF} target="_blank" rel="noopener" className="text-ink-600 underline underline-offset-2 hover:text-ink-900">
+            Zobrazit na mapě
+          </a>
         </p>
       </div>
     </section>
@@ -745,7 +754,12 @@ function CallBand() {
                 <PhoneIcon size={18} />
                 {PHONE}
               </a>
-              <div className="mt-4 text-[13px] text-white/40">Po–Ne · nezvedneme? Zavoláme zpět.</div>
+              <div className="mt-4 text-[13px] text-white/40">
+                Po–Ne · nezvedneme? Zavoláme zpět. Nebo{' '}
+                <a href={WHATSAPP_HREF} target="_blank" rel="noopener" className="text-white/70 underline underline-offset-2 hover:text-white">
+                  napište na WhatsApp
+                </a>.
+              </div>
             </div>
 
             {/* Reálná fotka vozu (na dveřích je telefonní číslo) */}
@@ -754,6 +768,8 @@ function CallBand() {
                 src="/02112011402.jpg"
                 alt="Výcvikové vozidlo Autoškoly Katka s telefonním číslem na dveřích"
                 className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                width="1200" height="900"
               />
             </div>
           </div>
@@ -855,18 +871,22 @@ function Testimonials() {
   const reviews = [
     {
       name: 'Aneta',
+      role: 'Absolventka',
       text: 'S paní Katkou jsem se cítila velmi dobře od začátku až do konce. Naučila mě vše k úspěšnému absolvování zkoušky. Kdyby bylo možné dát 10 hvězdiček, dám je!',
     },
     {
       name: 'Krista & Vašek',
+      role: 'Absolventi',
       text: 'Já i můj syn máme výborné zkušenosti. Všem, kteří potřebují trpělivou a hodnou paní učitelku s velkým rozhledem, doporučujeme volit tuto autoškolu.',
     },
     {
       name: 'Zdeněk Štěpánek',
+      role: 'Absolvent',
       text: 'Autoškola Katka je výborná. Kátka je přátelská, usměvavá, trpělivá a všechno, čím si nebudete jisti, vám ukáže a poradí.',
     },
     {
       name: 'Michal Pohl',
+      role: 'Absolvent',
       text: 'Přístup k žákům jak osobně, tak telefonicky je nejlepší. Při řízení nejste nervózní a nikdo vás nestresuje. Vzhledem k ceně určitě doporučuji.',
     },
   ];
@@ -930,7 +950,7 @@ function TestimonialCard({ r }) {
       {/* Author */}
       <div className="pt-3 border-t border-ink-900/5">
         <div className="text-[13px] font-medium text-ink-800">{r.name}</div>
-        <div className="text-[11.5px] text-ink-400 mt-0.5">Absolvent · Autoškola Katka</div>
+        <div className="text-[11.5px] text-ink-400 mt-0.5">{r.role} · Autoškola Katka</div>
       </div>
     </article>
   );
@@ -1016,7 +1036,7 @@ function Footer() {
 
           <FooterCol title="Kurzy" links={['Skupina B · B78', 'Skupiny A / A1 / A2', 'B+E · soupravy', 'Skupiny C · C+E', 'Skupina T (traktory)', 'Kondiční jízdy']} />
           <FooterCol title="Služby" links={['Přezkoušení po 12 b.', 'Po zákazu řízení', 'Školení referenčních řidičů', 'Převod z jiné AŠ', 'Cizojazyčný výcvik']} />
-          <FooterCol title="Kontakt" links={[['+420 724 974 771', PHONE_HREF], 'Smetanova 18', 'Bílina - Chotějovice', '418 04']} />
+          <FooterCol title="Kontakt" links={[['+420 724 974 771', PHONE_HREF], ['WhatsApp', WHATSAPP_HREF], ['Smetanova 18, Bílina', MAPS_HREF], 'Bílina - Chotějovice', '418 04']} />
         </div>
 
         <div className="mt-16 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[12.5px] text-white/50">

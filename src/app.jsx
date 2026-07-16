@@ -22,7 +22,6 @@ const ACCENTS = {
 
 const FONTS = {
   playfair: '"Playfair Display", serif',
-  fraunces: '"Fraunces", serif',
   inter:    '"Inter", system-ui, sans-serif',
 };
 
@@ -100,7 +99,6 @@ function App() {
           value={t.displayFont}
           options={[
             { value: 'playfair', label: 'Playfair' },
-            { value: 'fraunces', label: 'Fraunces' },
             { value: 'inter',    label: 'Inter' },
           ]}
           onChange={(v) => setTweak('displayFont', v)}
