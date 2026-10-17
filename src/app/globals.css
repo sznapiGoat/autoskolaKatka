@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  /* Barvy z polepu výcvikového vozu: modrá L-tabulka a červený nápis AUTOŠKOLA.
+     Podklad je chladná šedobílá jako asfaltová vodorovná značka, ne krém. */
+  --color-paper: #f2f4f6;
+  --color-sheet: #ffffff;
+  --color-ink: #111722;
+  --color-ink-soft: #2b3340;
+  --color-mute: #4f5866;
+  --color-line: #cbd2da;
+  --color-line-soft: #e1e6eb;
+  --color-sign: #1e4f96;
+  --color-sign-deep: #173d75;
+  --color-sign-tint: #e3ebf6;
+  --color-signal: #c62a1f;
+
+  --font-display: var(--font-overpass), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-overpass), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-overpass-mono), ui-monospace, monospace;
+
+  --radius-plate: 6px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-sign);
+  color: #fff;
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
+/* Přerušovaná dělicí čára jako vodorovné dopravní značení V 2a:
+   úsek 3 m, mezera 6 m, tedy poměr 1 : 2. */
+.lane {
+  background-image: linear-gradient(90deg, currentColor 0 33.33%, transparent 33.33% 100%);
+  background-size: 54px 3px;
+  background-repeat: repeat-x;
+  height: 3px;
+}
+
+.lane-y {
+  background-image: linear-gradient(180deg, currentColor 0 33.33%, transparent 33.33% 100%);
+  background-size: 3px 54px;
+  background-repeat: repeat-y;
+  width: 3px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Odhalení při scrollu. Třídu .js přidá inline skript v <head>,
+   bez JavaScriptu zůstane obsah normálně vidět. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 0.84, 0.44, 1),
+    transform 0.6s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Grid položky se nesmí roztáhnout podle tabulky uvnitř, ta má vlastní vodorovný scroll. */
+:where(.grid) > * {
+  min-width: 0;
+}
