@@ -196,7 +196,7 @@ export default function Home() {
                   href={k.href}
                   className={`group flex h-full flex-col gap-3 rounded-3xl p-6 transition-shadow ${
                     k.featured
-                      ? "bg-night text-white shadow-pop ring-1 ring-white/10"
+                      ? "bg-night text-white shadow-pop"
                       : k.tint
                         ? "bg-signal-soft shadow-soft hover:shadow-lift"
                         : "border border-ink/5 bg-sheet shadow-soft hover:shadow-lift"
