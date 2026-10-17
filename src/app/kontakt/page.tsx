@@ -16,7 +16,7 @@ export default function Kontakt() {
       <PageHead
         crumb="Kontakt"
         path="/kontakt"
-        title="Kontakt"
+        title={<>Kontakt a <span className="accent">učebna</span></>}
         lead={
           <p>
             Nejrychlejší je zavolat. Pevné úřední hodiny nemám, schůzku domluvíme po telefonu podle vás. Když
@@ -28,10 +28,10 @@ export default function Kontakt() {
       <Container className="grid gap-16 py-16 md:grid-cols-12 md:py-24">
         <div className="space-y-12 md:col-span-6">
           <div>
-            <h2 className="text-[15px] font-extrabold text-sign">Telefon</h2>
+            <h2 className="label">Telefon</h2>
             <a
               href={site.phoneHref}
-              className="tabular mt-2 block font-display text-[44px] leading-none font-black hover:text-sign sm:text-[56px]"
+              className="tabular mt-2 block font-display text-[44px] leading-none font-medium hover:text-sign sm:text-[56px]"
             >
               {site.phone}
             </a>
@@ -44,14 +44,14 @@ export default function Kontakt() {
           </div>
 
           <div>
-            <h2 className="text-[15px] font-extrabold text-sign">E-mail</h2>
+            <h2 className="label">E-mail</h2>
             <a href={`mailto:${site.email}`} className="mt-2 block text-[22px] font-bold hover:text-sign hover:underline">
               {site.email}
             </a>
           </div>
 
           <div>
-            <h2 className="text-[15px] font-extrabold text-sign">Učebna</h2>
+            <h2 className="label">Učebna</h2>
             <address className="mt-2 text-[22px] leading-snug font-bold not-italic">
               {site.address.street}
               <br />
@@ -73,7 +73,7 @@ export default function Kontakt() {
         </div>
 
         <div id="formular" className="scroll-mt-24 md:col-span-5 md:col-start-8">
-          <h2 className="text-[30px] font-black sm:text-[36px]">Nechte číslo, zavolám vám</h2>
+          <h2 className="text-[30px] font-medium sm:text-[36px]">Nechte číslo, zavolám vám</h2>
           <p className="mt-3 mb-8 text-ink-soft">Stačí jméno a telefon. Nic dalšího vyplňovat nemusíte.</p>
           <CallbackForm />
         </div>

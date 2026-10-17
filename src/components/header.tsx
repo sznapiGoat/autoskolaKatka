@@ -11,10 +11,6 @@ export function Header() {
   // Menu si pamatuje stránku, na které se otevřelo, takže se po navigaci samo zavře.
   const [openOn, setOpenOn] = useState<string | null>(null);
   const open = openOn === pathname;
-  const setOpen = (v: boolean | ((prev: boolean) => boolean)) => {
-    const next = typeof v === "function" ? v(open) : v;
-    setOpenOn(next ? pathname : null);
-  };
 
   useEffect(() => {
     if (!open) return;
@@ -28,14 +24,15 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-4">
+      {/* Skleněná lišta. Mobilní menu leží mimo ni, aby ho backdrop-filter neuzavřel do lišty. */}
+      <div className="glass mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 rounded-3xl pr-2 pl-4 sm:pl-5">
         <Link href="/" aria-label="Autoškola Katka, úvod" className="shrink-0">
           <Logo />
         </Link>
 
         <nav aria-label="Hlavní" className="hidden xl:block">
-          <ul className="flex items-center gap-1 text-[15px]">
+          <ul className="flex items-center text-[13.5px]">
             {nav.map((it) => {
               const active = pathname === it.href;
               return (
@@ -43,8 +40,8 @@ export function Header() {
                   <Link
                     href={it.href}
                     aria-current={active ? "page" : undefined}
-                    className={`block px-3 py-2 transition-colors ${
-                      active ? "text-sign underline decoration-2 underline-offset-[10px]" : "text-ink-soft hover:text-sign"
+                    className={`block rounded-xl px-3 py-2 transition-colors ${
+                      active ? "bg-ink/5 text-ink" : "text-ink-soft hover:text-ink"
                     }`}
                   >
                     {it.label}
@@ -55,23 +52,25 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <a
             href={site.phoneHref}
-            className="tabular bg-sign px-3 py-2 font-display text-[15px] whitespace-nowrap sm:text-[16px] font-extrabold text-white transition-colors hover:bg-sign-deep sm:px-4"
+            className="tabular rounded-2xl bg-ink px-4 py-2.5 text-[13.5px] font-medium whitespace-nowrap text-white transition-colors hover:bg-ink-hover"
+            aria-label={`Zavolat na ${site.phone}`}
           >
+            <span className="hidden sm:inline">Zavolat </span>
             {site.phone}
           </a>
           <button
             type="button"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpenOn(open ? null : pathname)}
             aria-expanded={open}
             aria-controls="menu"
-            className="grid size-10 place-items-center xl:hidden"
+            className="grid size-10 place-items-center rounded-2xl hover:bg-ink/5 xl:hidden"
           >
             <span className="sr-only">{open ? "Zavřít menu" : "Otevřít menu"}</span>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M3 7h18M3 12h18M3 17h18" />}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              {open ? <path d="M18 6 6 18M6 6l12 12" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
             </svg>
           </button>
         </div>
@@ -81,35 +80,22 @@ export function Header() {
         <nav
           id="menu"
           aria-label="Hlavní"
-          className="fixed inset-x-0 top-16 bottom-0 overflow-y-auto border-t border-line bg-paper xl:hidden"
+          className="fixed inset-x-3 top-[5.25rem] bottom-3 overflow-y-auto rounded-3xl border border-line bg-paper p-2 shadow-pop xl:hidden"
         >
-          <ul className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
-            <li>
-              <Link href="/" className="block border-b border-line-soft py-4 font-display text-2xl font-extrabold">
-                Úvod
-              </Link>
-            </li>
-            {nav.map((it) => (
-              <li key={it.href}>
-                <Link
-                  href={it.href}
-                  aria-current={pathname === it.href ? "page" : undefined}
-                  className="block border-b border-line-soft py-4 font-display text-2xl font-extrabold aria-[current=page]:text-sign"
-                >
-                  {it.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link href="/jak-na-ridicak" className="block border-b border-line-soft py-4 font-display text-2xl font-extrabold">
-                Jak na řidičák
-              </Link>
-            </li>
-            <li>
-              <Link href="/reference" className="block py-4 font-display text-2xl font-extrabold">
-                Reference
-              </Link>
-            </li>
+          <ul>
+            {[{ href: "/", label: "Úvod" }, ...nav, { href: "/jak-na-ridicak", label: "Jak na řidičák" }, { href: "/reference", label: "Reference" }].map(
+              (it) => (
+                <li key={it.href}>
+                  <Link
+                    href={it.href}
+                    aria-current={pathname === it.href ? "page" : undefined}
+                    className="block rounded-2xl px-4 py-3.5 font-display text-[22px] hover:bg-ink/5 aria-[current=page]:bg-ink/5"
+                  >
+                    {it.label}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
         </nav>
       )}

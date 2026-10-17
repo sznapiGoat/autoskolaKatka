@@ -27,7 +27,7 @@ export default function Motorka() {
       <PageHead
         crumb="Motorka"
         path="/ridicak-na-motorku"
-        title="Řidičák na motorku a skútr"
+        title={<>Řidičák na <span className="accent">motorku</span> a skútr</>}
         lead={
           <p>
             Čtyři skupiny podle věku a výkonu stroje. Každá stojí {kc(najdi("a").cena)}. Kdo už průkaz na menší
@@ -39,13 +39,13 @@ export default function Motorka() {
       {/* Žebříček skupin: na kterou motorku smíte v jakém věku */}
       <section className="py-16 md:py-24">
         <Container>
-          <h2 className="reveal max-w-2xl text-[30px] font-black sm:text-[36px]">Na co smíte a od kolika let</h2>
+          <h2 className="reveal max-w-2xl text-[30px] font-medium sm:text-[36px]">Na co smíte a od kolika let</h2>
           <ol className="reveal relative mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
             <div className="lane absolute top-10 right-0 left-0 hidden text-line md:block" aria-hidden="true" />
             {zebricek.map((z) => (
               <li key={z.code} className="relative">
                 <GroupSign code={z.code} size="lg" />
-                <p className="mt-6 font-display text-[28px] leading-none font-black">od {z.vek}</p>
+                <p className="mt-6 font-display text-[28px] leading-none font-medium">od {z.vek}</p>
                 <p className="mt-3 text-ink-soft">{z.co}</p>
               </li>
             ))}
@@ -57,10 +57,10 @@ export default function Motorka() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-sheet py-16 md:py-24">
+      <section className="bg-paper-2 py-16 md:py-24">
         <Container className="grid gap-12 md:grid-cols-12">
           <div className="reveal md:col-span-4">
-            <h2 className="text-[30px] font-black sm:text-[36px]">Ceník</h2>
+            <h2 className="text-[30px] font-medium sm:text-[36px]">Ceník</h2>
             <p className="mt-4 text-ink-soft">
               Řidičák na motorku a na auto najednou vyjde v sdruženém kurzu A + B nebo A2 + B na{" "}
               {kc(najdi("ab").cena)}.

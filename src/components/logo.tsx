@@ -1,12 +1,14 @@
-// Značka: modrá výcviková L-tabulka z dveří auta. Bílé L je vystřižené z plochy,
-// proto je to path, ne písmeno ve fontu.
-export function Plate({ className = "size-9" }: { className?: string }) {
+// Značka z předchozí verze webu: tmavý zaoblený čtverec s kurzívním „k“.
+export function Plate({ className = "size-9", tone = "ink" }: { className?: string; tone?: "ink" | "coral" }) {
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <rect width="40" height="40" rx="5" className="fill-sign" />
-      <rect x="2.5" y="2.5" width="35" height="35" rx="3" fill="none" stroke="#fff" strokeWidth="1.5" />
-      <path d="M13 9h6v16.5h10V31H13z" fill="#fff" />
-    </svg>
+    <span
+      aria-hidden="true"
+      className={`grid shrink-0 place-items-center rounded-2xl font-display text-lg italic ${
+        tone === "ink" ? "bg-ink text-paper" : "bg-signal text-white"
+      } ${className}`}
+    >
+      <span className="-translate-y-px">k</span>
+    </span>
   );
 }
 
@@ -14,8 +16,8 @@ export function Logo() {
   return (
     <span className="flex items-center gap-2.5">
       <Plate />
-      <span className="font-display text-[19px] leading-none font-extrabold tracking-tight">
-        Autoškola Katka
+      <span className="font-display text-[18px] leading-none tracking-tight">
+        Autoškola <span className="accent">Katka</span>
       </span>
     </span>
   );

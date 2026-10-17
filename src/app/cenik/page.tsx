@@ -17,7 +17,7 @@ export default function Cenik() {
       <PageHead
         crumb="Ceník"
         path="/cenik"
-        title="Ceník"
+        title={<>Ceník <span className="accent">kurzů</span></>}
         lead={
           <p>
             Platí od {site.priceListValidFrom}. Ceny jsou v Kč, autoškola není plátcem DPH. Poplatek za
@@ -25,7 +25,7 @@ export default function Cenik() {
           </p>
         }
         aside={
-          <nav aria-label="Oddíly ceníku" className="border-l-4 border-sign pl-5">
+          <nav aria-label="Oddíly ceníku" className="glass rounded-3xl px-5 py-4">
             <ul className="space-y-1.5">
               {cenik.map((o) => (
                 <li key={o.id}>
@@ -48,7 +48,7 @@ export default function Cenik() {
         {cenik.map((o) => (
           <section key={o.id} id={o.id} className="reveal scroll-mt-24">
             <div className="flex flex-wrap items-baseline justify-between gap-4">
-              <h2 className="text-[30px] font-black sm:text-[36px]">{o.nazev}</h2>
+              <h2 className="text-[30px] font-medium sm:text-[36px]">{o.nazev}</h2>
               <Link href={o.stranka} className="font-bold underline decoration-2 underline-offset-4 hover:text-sign">
                 Podrobnosti o kurzu
               </Link>
@@ -61,9 +61,9 @@ export default function Cenik() {
 
         <section id="poplatky" className="reveal grid scroll-mt-24 gap-12 md:grid-cols-2">
           <div>
-            <h2 className="text-[26px] font-black sm:text-[30px]">Poplatky za zkoušky</h2>
+            <h2 className="text-[26px] font-medium sm:text-[30px]">Poplatky za zkoušky</h2>
             <p className="mt-2 text-[15px] text-mute">Platí se zkušebnímu komisaři v den zkoušky.</p>
-            <dl className="mt-6 border-t-2 border-ink">
+            <dl className="mt-6 border-t border-line">
               {poplatkyZkousejicimu.map(([l, v]) => (
                 <div key={l} className="flex items-baseline justify-between gap-6 border-b border-line py-3">
                   <dt>{l}</dt>
@@ -73,9 +73,9 @@ export default function Cenik() {
             </dl>
           </div>
           <div>
-            <h2 className="text-[26px] font-black sm:text-[30px]">Ostatní</h2>
+            <h2 className="text-[26px] font-medium sm:text-[30px]">Ostatní</h2>
             <p className="mt-2 text-[15px] text-mute">Platí se autoškole.</p>
-            <dl className="mt-6 border-t-2 border-ink">
+            <dl className="mt-6 border-t border-line">
               {poplatkyAutoskole.map(([l, v]) => (
                 <div key={l} className="flex items-baseline justify-between gap-6 border-b border-line py-3">
                   <dt>{l}</dt>

@@ -51,7 +51,7 @@ export default function Kondicni() {
       <PageHead
         crumb="Kondiční jízdy"
         path="/kondicni-jizdy"
-        title="Kondiční jízdy pro řidiče, kteří chtějí zase jezdit"
+        title={<>Kondiční jízdy pro řidiče, kteří <span className="accent">chtějí zase jezdit</span></>}
         lead={
           <p>
             Máte řidičák, ale za volantem se necítíte dobře? Jedna hodina s instruktorkou vedle vás často
@@ -59,8 +59,8 @@ export default function Kondicni() {
           </p>
         }
         aside={
-          <div className="border-l-4 border-sign pl-5">
-            <p className="tabular font-display text-[56px] leading-none font-black text-sign">
+          <div className="glass rounded-3xl px-5 py-4">
+            <p className="tabular font-display text-[56px] leading-none font-medium text-sign">
               {kc(najdi("b").kondicni!).replace(" Kč", "")}
             </p>
             <p className="mt-2 text-ink-soft">Kč za hodinu na osobním autě</p>
@@ -70,11 +70,11 @@ export default function Kondicni() {
 
       <section className="py-16 md:py-24">
         <Container>
-          <h2 className="reveal max-w-2xl text-[30px] font-black sm:text-[36px]">Kdy se kondiční jízda hodí</h2>
+          <h2 className="reveal max-w-2xl text-[30px] font-medium sm:text-[36px]">Kdy se kondiční jízda hodí</h2>
           <ul className="reveal mt-12 grid gap-x-16 md:grid-cols-2">
             {situace.map(([t, d]) => (
               <li key={t} className="border-t border-line py-6">
-                <p className="font-display text-[22px] font-extrabold">{t}</p>
+                <p className="font-display text-[22px] font-medium">{t}</p>
                 <p className="mt-2 text-ink-soft">{d}</p>
               </li>
             ))}
@@ -82,14 +82,14 @@ export default function Kondicni() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-sheet py-16 md:py-24">
+      <section className="bg-paper-2 py-16 md:py-24">
         <Container className="grid gap-12 md:grid-cols-12">
-          <h2 className="reveal text-[30px] font-black sm:text-[36px] md:col-span-4">Sazby za hodinu</h2>
-          <dl className="reveal border-t-2 border-ink md:col-span-8">
+          <h2 className="reveal text-[30px] font-medium sm:text-[36px] md:col-span-4">Sazby za hodinu</h2>
+          <dl className="reveal border-t border-line md:col-span-8">
             {sazby.map(([label, cena]) => (
               <div key={label} className="flex items-baseline justify-between gap-6 border-b border-line py-4">
                 <dt>{label}</dt>
-                <dd className="tabular font-display text-[22px] font-black whitespace-nowrap">{kc(cena)}</dd>
+                <dd className="tabular font-display text-[22px] font-medium whitespace-nowrap">{kc(cena)}</dd>
               </div>
             ))}
           </dl>
@@ -98,11 +98,11 @@ export default function Kondicni() {
 
       <section className="py-16 md:py-24">
         <Container className="grid gap-10 md:grid-cols-12">
-          <h2 className="reveal text-[30px] font-black sm:text-[36px] md:col-span-4">Časté otázky</h2>
+          <h2 className="reveal text-[30px] font-medium sm:text-[36px] md:col-span-4">Časté otázky</h2>
           <div className="reveal space-y-8 md:col-span-8">
             {faq.map((f) => (
               <div key={f.q}>
-                <h3 className="text-[22px] font-extrabold">{f.q}</h3>
+                <h3 className="text-[22px] font-medium">{f.q}</h3>
                 <p className="mt-2 max-w-[65ch] text-ink-soft">{f.a}</p>
               </div>
             ))}

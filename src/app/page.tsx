@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CallStrip, Container } from "@/components/ui";
+import { CallStrip, Card, Container, Faq, SectionHead } from "@/components/ui";
 import { kc, najdi } from "@/lib/cenik";
 import { reference, rok } from "@/lib/reference";
+import { JsonLd, faqPage } from "@/lib/seo";
 import { site } from "@/lib/site";
 import nubira from "../../public/foto/nubira.jpg";
 import ucebna1 from "../../public/foto/ucebna-1.jpg";
@@ -12,219 +13,360 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
-const smery = [
+const skupiny = [
+  { id: "AM", label: "Moped", href: "/ridicak-na-motorku" },
+  { id: "A1", label: "125 cm³", href: "/ridicak-na-motorku" },
+  { id: "A2", label: "35 kW", href: "/ridicak-na-motorku" },
+  { id: "A", label: "Moto", href: "/ridicak-na-motorku" },
+  { id: "B", label: "Osobní", href: "/ridicak-skupina-b", primary: true },
+  { id: "B+E", label: "Přívěs", href: "/ridicak-skupina-b" },
+  { id: "C", label: "Nákladní", href: "/nakladni-auto-a-traktor" },
+  { id: "C+E", label: "Tahač", href: "/nakladni-auto-a-traktor" },
+  { id: "T", label: "Traktor", href: "/nakladni-auto-a-traktor" },
+];
+
+const kurzy = [
   {
     href: "/ridicak-skupina-b",
-    skupiny: ["B"],
+    label: "Skupina B",
     nazev: "Řidičák na auto",
-    pozn: "také automat B78, přívěs B+E a B96",
-    cena: `od ${kc(najdi("b").cena)}`,
+    pozn: "také automat B78, přívěs B+E a B96, rychlokurz za 6 týdnů",
+    cena: kc(najdi("b").cena),
+    od: true,
+    featured: true,
   },
   {
     href: "/ridicak-na-motorku",
-    skupiny: ["AM", "A1", "A2", "A"],
+    label: "Skupiny AM, A1, A2, A",
     nazev: "Řidičák na motorku",
     pozn: "od skútru po motorku bez omezení",
     cena: kc(najdi("a").cena),
   },
   {
     href: "/nakladni-auto-a-traktor",
-    skupiny: ["C", "C+E", "T"],
+    label: "Skupiny C, C+E, T",
     nazev: "Nákladní auto a traktor",
     pozn: "traktor i bez řidičáku na auto",
-    cena: `od ${kc(najdi("ce").cena)}`,
+    cena: kc(najdi("ce").cena),
+    od: true,
   },
   {
     href: "/kondicni-jizdy",
-    skupiny: ["B"],
+    label: "Pro řidiče",
     nazev: "Kondiční jízdy",
-    pozn: "pro řidiče, kteří dlouho neřídili",
+    pozn: "když jste dlouho neřídili nebo si nevěříte",
     cena: `${kc(najdi("b").kondicni!)} / h`,
   },
   {
     href: "/prezkouseni-po-zakazu-rizeni",
-    skupiny: ["12 b."],
-    nazev: "Přezkoušení po zákazu řízení",
-    pozn: "i po vynulování bodů",
+    label: "Přezkoušení",
+    nazev: "Po zákazu řízení a po 12 bodech",
+    pozn: "se vším papírováním poradíme",
     cena: "6 000 Kč",
   },
 ];
 
-const vybrane = ["Eliška", "Michal Pohl", "Jaroslava Jírová"].map(
+const kroky = [
+  { t: "Přihláška", d: "Zavoláte, domluvíme kurz. Přihlášku a lékařský posudek si stáhnete, nebo je vyplníme spolu." },
+  { t: "Teorie", d: "Pravidla provozu, bezpečná jízda a první pomoc v učebně ve Smetanově ulici." },
+  { t: "Jízdy", d: "Nejdřív seznámení s autem, pak běžný provoz. Tempo si určujete vy." },
+  { t: "Zkouška", d: "Test a jízda u komisaře. Po složení si vyzvednete řidičák." },
+];
+
+const faq = [
+  { q: "Kdy můžu začít?", a: "Zápis přijímáme průběžně. Zavolejte nebo napište a domluvíme termín." },
+  { q: "Lze platit na splátky?", a: "Ano, splátky jsou možné přímo přes autoškolu bez navýšení." },
+  { q: "Mohu absolvovat výcvik v cizím jazyce?", a: "Ano. Cena se domluví individuálně před začátkem kurzu." },
+  {
+    q: "Jak funguje přechod z jiné autoškoly?",
+    a: "Převod na zkoušky stojí 3 000 Kč pro skupiny B, B+E, B78 a B96. Pro ostatní skupiny 5 000 Kč za každou skupinu.",
+  },
+  {
+    q: "Jak funguje dárkový poukaz?",
+    a: "Dárkový poukaz platí 365 dní od zakoupení. Po uplynutí doby propadá bez nároku na vrácení ceny.",
+  },
+];
+
+const vybrane = ["Eliška", "Michal Pohl", "Jaroslava Jírová", "Zdeněk Štěpánek"].map(
   (j) => reference.find((r) => r.jmeno === j)!,
 );
 
 export default function Home() {
   return (
     <>
-      {/* Úvod: nadpis, telefon a skutečné výcvikové auto */}
-      <section>
-        <Container className="grid gap-10 pt-10 pb-14 md:grid-cols-12 md:gap-8 md:pt-16 md:pb-20">
-          <div className="md:col-span-7 md:pr-6">
-            <h1 className="text-[46px] font-black sm:text-[64px] lg:text-[80px]">
-              Řidičák v&nbsp;Bílině. V&nbsp;klidu a bez křiku.
-            </h1>
-            <p className="mt-6 max-w-[52ch] text-[19px] text-ink-soft">
-              Autoškola Katka v Chotějovicích u Bíliny. Od roku {site.since} tu učí řídit Kateřina
-              Krajníková. Jedna instruktorka, vlastní učebna
-              a tempo podle vás. Auto, motorka, náklaďák i traktor, kondiční jízdy a přezkoušení po
-              zákazu řízení.
+      <JsonLd data={faqPage(faq)} />
+
+      {/* HERO */}
+      <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
+        <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
+        <Container className="relative pt-12 pb-16 md:pt-20 md:pb-24">
+          <p className="rise glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] text-ink-soft">
+            <span className="size-1.5 rounded-full bg-signal" aria-hidden="true" />
+            Zápis průběžně <span className="text-mute">·</span> Bílina a okolí
+          </p>
+
+          <h1 className="rise mt-6 text-[46px] leading-[0.98] sm:text-[66px] md:text-[88px]" style={{ animationDelay: ".08s" }}>
+            Řidičák v&nbsp;Bílině,
+            <br />
+            <span className="accent">v klidu</span> a bez křiku.
+          </h1>
+
+          <div className="rise mt-8 md:mt-10" style={{ animationDelay: ".16s" }}>
+            <p className="max-w-[50ch] text-[16px] text-ink-soft md:text-[17px]">
+              <strong className="font-medium text-ink">Autoškola Katka</strong> v Chotějovicích u Bíliny. Od roku{" "}
+              {site.since} učí řídit Kateřina Krajníková: lidsky, trpělivě a tempem, které sedne <em>vám</em>.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-end gap-x-8 gap-y-4">
-              <div>
-                <p className="text-[15px] text-mute">Zavolejte, všechno domluvíme po telefonu</p>
-                <a
-                  href={site.phoneHref}
-                  className="tabular mt-1 block font-display text-[44px] leading-none font-black text-sign hover:underline sm:text-[56px]"
-                >
-                  {site.phone}
-                </a>
-              </div>
-              <Link
-                href="/kontakt#formular"
-                className="mb-1 text-[17px] font-bold underline decoration-2 underline-offset-4 hover:text-sign"
+            <ul className="mt-6 flex flex-wrap gap-1.5" aria-label="Skupiny řidičského oprávnění">
+              {skupiny.map((s) => (
+                <li key={s.id}>
+                  <Link
+                    href={s.href}
+                    className={`inline-flex min-w-14 flex-col items-center rounded-2xl px-3 py-2 transition-colors ${
+                      s.primary
+                        ? "bg-ink text-white shadow-lift hover:bg-ink-hover"
+                        : "border border-ink/10 bg-white/70 text-ink hover:bg-white"
+                    }`}
+                  >
+                    <span className="font-display text-[16px] leading-none">{s.id}</span>
+                    <span className={`mt-1 text-[10px] ${s.primary ? "text-white/65" : "text-mute"}`}>{s.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={site.phoneHref}
+                className="tabular inline-flex items-center justify-center rounded-3xl bg-ink px-6 py-4 text-[15px] font-medium text-white shadow-lift transition-colors hover:bg-ink-hover"
               >
-                Nebo nechte číslo, ozvu se
+                Zavolejte {site.phone}
+              </a>
+              <Link
+                href="/cenik"
+                className="inline-flex items-center justify-center gap-2 rounded-3xl border border-ink/10 px-6 py-4 text-[15px] font-medium transition-colors hover:bg-ink/5"
+              >
+                Ceník a kurzy <span aria-hidden="true">→</span>
               </Link>
             </div>
+            <p className="mt-3 text-[13.5px] text-mute">
+              Nejraději si popovídáme po telefonu. Nebo{" "}
+              <Link href="/kontakt#formular" className="text-ink-soft underline underline-offset-2 hover:text-ink">
+                nechte číslo a zavoláme vám
+              </Link>
+              .
+            </p>
           </div>
 
-          <figure className="md:col-span-5">
-            <Image
-              src={nubira}
-              alt="Modré kombi Chevrolet Nubira s červeným nápisem Autoškola a telefonním číslem na dveřích"
-              priority
-              sizes="(min-width: 768px) 40vw, 100vw"
-              className="aspect-[4/3] w-full rounded-[var(--radius-plate)] object-cover"
-            />
-            <figcaption className="mt-3 text-[14px] text-mute">
-              Výcvikové auto s číslem na dveřích. Když ho uvidíte v Bílině, jede s ním někdo, kdo se
-              právě učí.
-            </figcaption>
-          </figure>
+          <div className="rise relative mt-12 md:mt-16" style={{ animationDelay: ".24s" }}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-5xl shadow-lift sm:aspect-[16/9]">
+              <Image
+                src={nubira}
+                alt="Modré výcvikové kombi s červeným nápisem Autoškola a telefonním číslem na dveřích"
+                fill
+                priority
+                sizes="(min-width: 1152px) 1104px, 100vw"
+                className="object-cover object-[50%_60%]"
+              />
+            </div>
+            <div className="glass absolute bottom-4 left-4 max-w-[260px] rounded-2xl px-4 py-3 md:bottom-6 md:left-6">
+              <p className="text-[11px] tracking-[0.14em] text-mute uppercase">Skupina B</p>
+              <p className="tabular mt-0.5 font-display text-3xl">
+                {kc(najdi("b").cena).replace(" Kč", "")}
+                <span className="text-lg text-mute"> Kč</span>
+              </p>
+            </div>
+          </div>
         </Container>
       </section>
 
-      {/* Rozcestník jako modrá směrová tabule */}
-      <section aria-labelledby="rozcestnik">
-        <Container className="pb-16 md:pb-24">
-          <div className="rounded-[var(--radius-plate)] bg-sign p-1.5 text-white">
-            <div className="rounded-[4px] border-2 border-white px-4 py-6 sm:px-8 sm:py-8">
-              <h2 id="rozcestnik" className="font-display text-[26px] font-black sm:text-[32px]">
-                Kam se chcete dostat?
-              </h2>
-              <ul className="mt-6">
-                {smery.map((s) => (
-                  <li key={s.href} className="border-t border-white/35">
-                    <Link
-                      href={s.href}
-                      className="group grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 py-5 sm:grid-cols-[13rem_1fr_auto_auto] sm:gap-x-8"
-                    >
-                      <span className="col-span-2 flex flex-wrap gap-1.5 sm:col-span-1">
-                        {s.skupiny.map((g) => (
-                          <span
-                            key={g}
-                            className="grid h-9 min-w-9 place-items-center rounded-[3px] bg-white px-1.5 font-display text-[15px] font-black text-sign"
-                          >
-                            <span className="translate-y-[0.06em]">{g}</span>
-                          </span>
-                        ))}
-                      </span>
-                      <span>
-                        <span className="block font-display text-[22px] leading-tight font-extrabold group-hover:underline sm:text-[26px]">
-                          {s.nazev}
-                        </span>
-                        <span className="block text-[15px] text-white/80">{s.pozn}</span>
-                      </span>
-                      <span className="tabular text-right font-display text-[18px] font-extrabold whitespace-nowrap sm:text-[20px]">
-                        {s.cena}
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className="hidden font-display text-3xl transition-transform group-hover:translate-x-1 sm:block"
-                      >
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <p className="mt-4 text-[14px] text-mute">
-            Ceny platí od {site.priceListValidFrom}. Poplatek za závěrečnou zkoušku (700 Kč) se platí zvlášť.{" "}
-            <Link href="/cenik" className="underline underline-offset-4 hover:text-sign">
-              Celý ceník
+      {/* KURZY: rozcestník na podstránky */}
+      <section className="py-20 md:py-28">
+        <Container>
+          <SectionHead
+            label="Kurzy a ceny"
+            title={
+              <>
+                Vyberte si <span className="accent">svůj</span> řidičák.
+              </>
+            }
+          />
+          <ul className="reveal mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {kurzy.map((k) => (
+              <li key={k.href} className={k.featured ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}>
+                <Link
+                  href={k.href}
+                  className={`group flex h-full flex-col gap-3 rounded-3xl p-6 transition-shadow ${
+                    k.featured
+                      ? "bg-ink text-white shadow-pop"
+                      : "border border-ink/5 bg-sheet shadow-soft hover:shadow-lift"
+                  }`}
+                >
+                  <span className={`text-[11px] tracking-[0.16em] uppercase ${k.featured ? "text-white/50" : "text-mute"}`}>
+                    {k.label}
+                  </span>
+                  <span className={`font-display leading-tight ${k.featured ? "text-[30px]" : "text-[22px]"}`}>{k.nazev}</span>
+                  <span className={`text-[14px] ${k.featured ? "text-white/60" : "text-ink-soft"}`}>{k.pozn}</span>
+                  <span className="mt-auto pt-4">
+                    <span className={`block text-[12px] ${k.featured ? "text-white/50" : "text-mute"}`}>
+                      {k.od ? "od" : "cena"}
+                    </span>
+                    <span className={`tabular block font-display leading-none ${k.featured ? "text-[46px]" : "text-[32px]"}`}>
+                      {k.cena}
+                    </span>
+                  </span>
+                  <span
+                    className={`mt-2 inline-flex items-center gap-1.5 text-[13.5px] font-medium ${
+                      k.featured ? "text-white/80 group-hover:text-white" : "text-ink group-hover:text-sign"
+                    }`}
+                  >
+                    Podrobnosti <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 max-w-[70ch] text-[13px] text-mute">
+            Ceník platný od {site.priceListValidFrom}. V cenách kurzu není zahrnut poplatek za závěrečnou zkoušku.
+            Autoškola není plátcem DPH.{" "}
+            <Link href="/cenik" className="text-ink-soft underline underline-offset-2 hover:text-ink">
+              Kompletní ceník
             </Link>
           </p>
         </Container>
       </section>
 
-      {/* Kdo učí a kde */}
-      <section className="border-y border-line bg-sheet">
-        <Container className="grid gap-12 py-16 md:grid-cols-12 md:py-24">
-          <div className="reveal md:col-span-5">
-            <h2 className="text-[32px] font-black sm:text-[42px]">Učí vás jeden člověk, od první hodiny po zkoušku</h2>
-            <div className="mt-6 space-y-4 text-ink-soft">
-              <p>
-                Autoškola Katka není síť poboček. Teorii i jízdy vede Kateřina Krajníková, takže víte, s kým
-                pojedete, a nemusíte si na nového instruktora zvykat uprostřed výcviku.
+      {/* O NÁS + UČEBNA */}
+      <section className="bg-paper-2 py-20 md:py-28">
+        <Container>
+          <SectionHead
+            label="O nás"
+            title={
+              <>
+                Autoškola s <span className="accent">lidským přístupem.</span>
+              </>
+            }
+          />
+          <div className="mt-12 grid items-start gap-8 md:grid-cols-2 md:gap-12">
+            <Card className="reveal p-8 md:p-10">
+              <div className="flex items-center gap-5">
+                <span
+                  aria-hidden="true"
+                  className="grid size-20 shrink-0 place-items-center rounded-full bg-signal font-display text-[28px] text-ink"
+                >
+                  KK
+                </span>
+                <div>
+                  <p className="font-display text-[22px] leading-tight">Kateřina Krajníková</p>
+                  <p className="mt-1 text-[13px] text-mute">majitelka a instruktorka</p>
+                </div>
+              </div>
+              <p className="mt-6 text-[15px] text-ink-soft">
+                Autoškola Katka není síť poboček. Výcvik vede Katka osobně, takže víte, s kým pojedete, a nemusíte si
+                zvykat na nového instruktora uprostřed kurzu. Specializuje se i na přezkoušení po zákazu řízení a po
+                dosažení 12 bodů.
               </p>
-              <p>
-                Teorie se učí ve vlastní učebně v Chotějovicích, Smetanova 18. Termíny jízd se skládají podle
-                toho, kdy můžete vy, i při škole nebo směnách.
+              <p className="mt-4 text-[15px] text-ink-soft">
+                Absolventi o ní nejčastěji píšou jedno slovo: <em className="accent">trpělivá</em>.
+              </p>
+            </Card>
+            <div className="reveal">
+              <div className="grid grid-cols-2 gap-4">
+                <Image
+                  src={ucebna1}
+                  alt="Učebna autoškoly: lavice se židlemi, na stěně tabule dopravních značek a televize"
+                  sizes="(min-width: 768px) 25vw, 50vw"
+                  className="aspect-[4/5] w-full rounded-4xl object-cover shadow-soft"
+                />
+                <Image
+                  src={ucebna2}
+                  alt="Druhý pohled do učebny s lavicemi, flipchartem a přehledem značek na stěně"
+                  sizes="(min-width: 768px) 25vw, 50vw"
+                  className="aspect-[4/5] w-full rounded-4xl object-cover shadow-soft"
+                />
+              </div>
+              <p className="mt-4 text-[14px] text-mute">
+                Výuka teorie probíhá v učebně na adrese {site.address.street}, {site.address.part}.{" "}
+                <a href={site.mapsHref} className="text-ink-soft underline underline-offset-2 hover:text-ink">
+                  Zobrazit na mapě
+                </a>
               </p>
             </div>
-            <Link
-              href="/jak-na-ridicak"
-              className="mt-8 inline-block font-bold underline decoration-2 underline-offset-4 hover:text-sign"
-            >
-              Jak výcvik probíhá krok za krokem
-            </Link>
-          </div>
-          <div className="reveal grid grid-cols-2 gap-3 md:col-span-7">
-            <Image
-              src={ucebna1}
-              alt="Učebna autoškoly: lavice se židlemi, na stěně tabule dopravních značek a televize"
-              sizes="(min-width: 768px) 30vw, 50vw"
-              className="aspect-[3/4] h-full w-full rounded-[var(--radius-plate)] object-cover"
-            />
-            <Image
-              src={ucebna2}
-              alt="Druhý pohled do učebny s lavicemi, flipchartem a přehledem značek na stěně"
-              sizes="(min-width: 768px) 30vw, 50vw"
-              className="aspect-[3/4] h-full w-full rounded-[var(--radius-plate)] object-cover"
-            />
-            <p className="col-span-2 text-[14px] text-mute">Učebna, Smetanova 18, Chotějovice.</p>
           </div>
         </Container>
       </section>
 
-      {/* Reference */}
-      <section className="py-16 md:py-24">
+      {/* CESTA ŽÁKA */}
+      <section className="py-20 md:py-28">
         <Container>
-          <div className="reveal flex flex-wrap items-end justify-between gap-6">
-            <h2 className="max-w-2xl text-[32px] font-black sm:text-[42px]">
-              Absolventi nejčastěji píšou jedno slovo: trpělivá
-            </h2>
-            <Link href="/reference" className="font-bold underline decoration-2 underline-offset-4 hover:text-sign">
+          <SectionHead
+            label="Cesta žáka"
+            title={
+              <>
+                Z nuly k řidičáku <span className="accent">ve čtyřech krocích.</span>
+              </>
+            }
+          />
+          <ol className="reveal relative mt-12 grid gap-4 md:grid-cols-4 md:gap-6">
+            <div className="lane absolute top-7 right-[12%] left-[12%] hidden text-ink/25 md:block" aria-hidden="true" />
+            {kroky.map((k, i) => (
+              <li key={k.t} className="relative flex gap-4 rounded-3xl border border-ink/5 bg-sheet p-4 shadow-soft md:block md:border-0 md:bg-transparent md:p-0 md:text-center md:shadow-none">
+                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-ink font-display text-[17px] text-white shadow-lift md:mx-auto md:size-14">
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="font-display text-[19px] md:mt-5 md:text-[20px]">{k.t}</p>
+                  <p className="mt-1 text-[13.5px] text-ink-soft md:mx-auto md:max-w-[26ch]">{k.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-10 text-center">
+            <Link
+              href="/jak-na-ridicak"
+              className="inline-flex items-center gap-2 rounded-2xl border border-ink/10 px-5 py-3 text-[14px] font-medium hover:bg-ink/5"
+            >
+              Celý postup a dokumenty ke stažení <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* REFERENCE */}
+      <section className="pb-20 md:pb-28">
+        <Container>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHead
+              label="Reference"
+              title={
+                <>
+                  Co říkají <span className="accent">absolventi.</span>
+                </>
+              }
+            />
+            <Link href="/reference" className="reveal text-[14px] font-medium underline underline-offset-4 hover:text-sign">
               Všechna hodnocení
             </Link>
           </div>
-          <div className="reveal mt-12 grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line">
+          <ul className="reveal mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {vybrane.map((r) => (
-              <figure key={r.jmeno} className="md:px-8 md:first:pl-0 md:last:pr-0">
-                <blockquote className="text-[19px] leading-relaxed">„{r.text}“</blockquote>
-                <figcaption className="mt-5 text-[15px] text-mute">
-                  <span className="font-bold text-ink">{r.jmeno}</span>, {rok(r.datum)}
-                </figcaption>
-              </figure>
+              <li key={r.jmeno}>
+                <Card className="flex h-full flex-col gap-4 p-6">
+                  <span aria-hidden="true" className="font-display text-[44px] leading-none text-signal">
+                    “
+                  </span>
+                  <blockquote className="flex-1 text-[14px] leading-relaxed text-ink-soft">{r.text}</blockquote>
+                  <p className="border-t border-line pt-3 text-[13px]">
+                    <span className="font-medium">{r.jmeno}</span>
+                    <span className="text-mute">, {rok(r.datum)}</span>
+                  </p>
+                </Card>
+              </li>
             ))}
-          </div>
-          <p className="mt-12 text-[14px] text-mute">
-            Hodnocení pochází z nezávislého katalogu{" "}
-            <a href={site.reviewsHref} className="underline underline-offset-4 hover:text-sign">
+          </ul>
+          <p className="mt-6 text-[13px] text-mute">
+            Hodnocení z nezávislého katalogu{" "}
+            <a href={site.reviewsHref} className="underline underline-offset-2 hover:text-ink">
               vsechny-autoskoly.cz
             </a>
             .
@@ -232,32 +374,22 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Jak začít */}
-      <section className="border-t border-line">
-        <Container className="grid gap-10 py-16 md:grid-cols-12 md:py-24">
-          <h2 className="reveal text-[32px] font-black sm:text-[42px] md:col-span-4">Jak začít</h2>
-          <ol className="reveal md:col-span-8">
-            {[
-              ["Zavolejte", "Domluvíme skupinu, cenu, platbu a první termín. Zápis je průběžně, nečeká se na začátek kurzu."],
-              [
-                "Přineste dva papíry",
-                "Přihlášku a posudek o zdravotní způsobilosti od praktického lékaře. Formuláře si můžete stáhnout předem.",
-              ],
-              ["Jezděte", "Teorie v učebně, jízdy v provozu po Bílině a okolí, nakonec zkouška u zkušebního komisaře."],
-            ].map(([t, d], i) => (
-              <li key={t} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-line py-6 last:border-b">
-                <span className="font-display text-[28px] leading-none font-black text-sign">{i + 1}.</span>
-                <div>
-                  <p className="font-display text-[22px] font-extrabold">{t}</p>
-                  <p className="mt-1 text-ink-soft">{d}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
       <CallStrip />
+
+      {/* FAQ */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <div className="reveal text-center">
+            <p className="label justify-center">Časté dotazy</p>
+            <h2 className="mt-4 text-[34px] md:text-[50px]">
+              Otázky, které <span className="accent">slýcháme.</span>
+            </h2>
+          </div>
+          <div className="reveal mt-12">
+            <Faq items={faq} />
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -44,7 +44,7 @@ export default function SkupinaB() {
       <PageHead
         crumb="Řidičák B"
         path="/ridicak-skupina-b"
-        title={<>Řidičák na auto, skupina&nbsp;B</>}
+        title={<>Řidičák na auto, <span className="accent">skupina&nbsp;B</span></>}
         lead={
           <p>
             Nejčastější kurz autoškoly. Teorie v učebně v Chotějovicích, jízdy v běžném provozu po Bílině a
@@ -68,7 +68,7 @@ export default function SkupinaB() {
       <Container className="grid gap-x-16 gap-y-12 py-16 md:grid-cols-12 md:py-24">
         <article className="space-y-12 md:col-span-7">
           <section className="reveal">
-            <h2 className="text-[30px] font-black sm:text-[36px]">Co vás čeká</h2>
+            <h2 className="text-[30px] font-medium sm:text-[36px]">Co vás čeká</h2>
             <div className="mt-5 max-w-[68ch] space-y-4 text-ink-soft">
               <p>
                 Výcvik má dvě části. V teorii projdete pravidla provozu, zásady bezpečné jízdy a první pomoc. V
@@ -83,7 +83,7 @@ export default function SkupinaB() {
           </section>
 
           <section className="reveal">
-            <h2 className="text-[30px] font-black sm:text-[36px]">Zkouška</h2>
+            <h2 className="text-[30px] font-medium sm:text-[36px]">Zkouška</h2>
             <div className="mt-5 max-w-[68ch] space-y-4 text-ink-soft">
               <p>
                 Nejdřív test z pravidel na počítači, potom praktická jízda se zkušebním komisařem. Na test se
@@ -98,7 +98,7 @@ export default function SkupinaB() {
           </section>
 
           <section className="reveal">
-            <h2 className="text-[30px] font-black sm:text-[36px]">Rychlokurz, automat a přívěs</h2>
+            <h2 className="text-[30px] font-medium sm:text-[36px]">Rychlokurz, automat a přívěs</h2>
             <dl className="mt-6 divide-y divide-line border-y border-line">
               {[
                 ["Rychlokurz", "Celý kurz B za šest týdnů. Hodí se před nástupem do práce nebo na léto."],
@@ -113,7 +113,7 @@ export default function SkupinaB() {
                 ],
               ].map(([t, d]) => (
                 <div key={t} className="grid gap-1 py-4 sm:grid-cols-[9rem_1fr] sm:gap-6">
-                  <dt className="font-display text-[19px] font-extrabold">{t}</dt>
+                  <dt className="font-display text-[19px] font-medium">{t}</dt>
                   <dd className="text-ink-soft">{d}</dd>
                 </div>
               ))}
@@ -123,20 +123,20 @@ export default function SkupinaB() {
 
         <aside className="md:col-span-4 md:col-start-9">
           <div className="space-y-8 md:sticky md:top-24">
-            <div className="border-l-4 border-sign pl-5">
-              <p className="font-display text-[15px] font-extrabold text-sign">Splátky</p>
+            <div className="glass rounded-3xl px-5 py-4">
+              <p className="label">Splátky</p>
               <p className="mt-1 text-ink-soft">Kurz můžete platit po částech, bez navýšení.</p>
             </div>
-            <div className="border-l-4 border-sign pl-5">
-              <p className="font-display text-[15px] font-extrabold text-sign">Výuka v cizím jazyce</p>
+            <div className="glass rounded-3xl px-5 py-4">
+              <p className="label">Výuka v cizím jazyce</p>
               <p className="mt-1 text-ink-soft">Jde to, cenu domluvíme podle náročnosti předem.</p>
             </div>
-            <div className="border-l-4 border-sign pl-5">
-              <p className="font-display text-[15px] font-extrabold text-sign">Dárkový poukaz</p>
+            <div className="glass rounded-3xl px-5 py-4">
+              <p className="label">Dárkový poukaz</p>
               <p className="mt-1 text-ink-soft">Řidičák jako dárek k osmnáctinám. Poukaz platí 365 dní.</p>
             </div>
-            <div className="border-l-4 border-sign pl-5">
-              <p className="font-display text-[15px] font-extrabold text-sign">Papíry k přihlášce</p>
+            <div className="glass rounded-3xl px-5 py-4">
+              <p className="label">Papíry k přihlášce</p>
               <p className="mt-1 text-ink-soft">
                 Přihláška a posudek od lékaře.{" "}
                 <Link href="/jak-na-ridicak#dokumenty" className="text-sign underline underline-offset-4">
@@ -148,9 +148,9 @@ export default function SkupinaB() {
         </aside>
       </Container>
 
-      <section className="border-t border-line bg-sheet py-16 md:py-24">
+      <section className="bg-paper-2 py-16 md:py-24">
         <Container>
-          <h2 className="reveal text-[30px] font-black sm:text-[36px]">Ceny kurzů na osobní auto</h2>
+          <h2 className="reveal text-[30px] font-medium sm:text-[36px]">Ceny kurzů na osobní auto</h2>
           <div className="reveal mt-8">
             <PriceTable rows={osobni} caption="Ceník kurzů skupiny B a souvisejících" />
           </div>
@@ -162,7 +162,7 @@ export default function SkupinaB() {
 
       <section className="py-16 md:py-24">
         <Container className="grid gap-10 md:grid-cols-12">
-          <h2 className="reveal text-[30px] font-black sm:text-[36px] md:col-span-4">Na co se lidé ptají</h2>
+          <h2 className="reveal text-[30px] font-medium sm:text-[36px] md:col-span-4">Na co se lidé ptají</h2>
           <div className="reveal md:col-span-8">
             <Faq items={faq} />
           </div>

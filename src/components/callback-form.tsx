@@ -46,8 +46,8 @@ export function CallbackForm() {
 
   if (stav === "odeslano") {
     return (
-      <div role="status" className="border-t-2 border-ink pt-8">
-        <p className="font-display text-[30px] font-black">Díky, ozvu se.</p>
+      <div role="status" className="border-t border-line pt-8">
+        <p className="font-display text-[30px] font-medium">Díky, ozvu se.</p>
         <p className="mt-3 text-ink-soft">
           Zavolám zpátky na číslo, které jste nechali, obvykle do druhého dne. Nechce se vám čekat?{" "}
           <a href={site.phoneHref} className="font-bold text-sign underline underline-offset-4">
@@ -62,7 +62,7 @@ export function CallbackForm() {
     "mt-2 block w-full rounded-[var(--radius-plate)] border border-line bg-sheet px-4 py-3 text-[17px] outline-none transition-colors focus:border-sign";
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 border-t-2 border-ink pt-8" noValidate={false}>
+    <form onSubmit={onSubmit} className="space-y-6 border-t border-line pt-8" noValidate={false}>
       <div>
         <label htmlFor="jmeno" className="font-bold">
           Jméno
@@ -104,14 +104,14 @@ export function CallbackForm() {
         </label>
       </div>
       {chyba && (
-        <p role="alert" className="font-bold text-signal">
+        <p role="alert" className="font-bold text-sign">
           {chyba}
         </p>
       )}
       <button
         type="submit"
         disabled={stav === "odesila"}
-        className="bg-ink px-6 py-3.5 font-display text-[18px] font-extrabold text-white transition-colors hover:bg-sign disabled:opacity-60"
+        className="rounded-2xl bg-ink px-6 py-3.5 text-[15px] font-medium text-white shadow-lift transition-colors hover:bg-ink-hover disabled:opacity-60"
       >
         {stav === "odesila" ? "Odesílám" : "Zavolejte mi"}
       </button>

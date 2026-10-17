@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 function Clanek({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="grid gap-3 border-t border-line py-8 md:grid-cols-12 md:gap-8">
-      <h2 className="text-[22px] font-black md:col-span-4">{title}</h2>
+      <h2 className="text-[22px] font-medium md:col-span-4">{title}</h2>
       <div className="space-y-3 text-ink-soft md:col-span-8">{children}</div>
     </section>
   );
@@ -24,7 +24,7 @@ export default function Zasady() {
       <PageHead
         crumb="Zásady zpracování osobních údajů"
         path="/zasady-soukromi"
-        title="Zásady zpracování osobních údajů"
+        title={<>Zásady zpracování <span className="accent">osobních údajů</span></>}
         lead={
           <p>
             Jak nakládám s údaji, které pošlete přes formulář na tomto webu. Zpracovávám jen to, co je potřeba,

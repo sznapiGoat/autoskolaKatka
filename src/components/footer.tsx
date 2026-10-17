@@ -2,77 +2,82 @@ import Link from "next/link";
 import { Plate } from "@/components/logo";
 import { nav, site } from "@/lib/site";
 
+const odkazy = [...nav, { href: "/jak-na-ridicak", label: "Jak na řidičák" }, { href: "/reference", label: "Reference" }];
+
 export function Footer() {
   return (
-    <footer className="bg-ink text-white/80">
-      <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6">
-        <div className="lane text-white/20" aria-hidden="true" />
-      </div>
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 pt-12 pb-16 sm:px-6 md:grid-cols-12">
+    <footer className="mt-8 bg-ink pt-20 pb-8 text-[#e7e5de]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 md:grid-cols-12">
         <div className="md:col-span-5">
-          <div className="flex items-center gap-3">
-            <Plate className="size-11" />
-            <p className="font-display text-2xl font-extrabold text-white">Autoškola Katka</p>
+          <div className="flex items-center gap-2.5">
+            <Plate tone="coral" />
+            <p className="font-display text-[20px]">
+              Autoškola <span className="italic">Katka</span>
+            </p>
           </div>
+          <p className="mt-5 max-w-[40ch] text-[14.5px] leading-relaxed text-white/60">
+            Autoškola v Chotějovicích u Bíliny. Učíme řídit od roku {site.since}. Trpělivě, v klidu, bez křiku.
+          </p>
           <a
             href={site.phoneHref}
-            className="tabular mt-8 block font-display text-4xl font-extrabold text-white hover:underline sm:text-5xl"
+            className="tabular mt-7 inline-block rounded-2xl bg-paper px-5 py-3.5 text-[15px] font-medium text-ink transition-colors hover:bg-white"
           >
-            {site.phone}
-          </a>
-          <p className="mt-3 max-w-sm text-[15px]">
-            Volejte kdykoli. Když zrovna učím a nezvednu to, zavolám zpátky.
-          </p>
-          <p className="mt-6 text-[15px]">
-            <a href={`mailto:${site.email}`} className="underline underline-offset-4 hover:text-white">
-              {site.email}
-            </a>
-            <span className="mx-2 text-white/40">/</span>
-            <a href={site.whatsapp} className="underline underline-offset-4 hover:text-white">
-              WhatsApp
-            </a>
-          </p>
-        </div>
-
-        <div className="md:col-span-3">
-          <p className="font-display text-sm font-extrabold tracking-wide text-white">Učebna</p>
-          <address className="mt-3 text-[15px] not-italic">
-            {site.address.street}
-            <br />
-            {site.address.part}
-            <br />
-            {site.address.zip} {site.address.city}
-          </address>
-          <a href={site.mapsHref} className="mt-3 inline-block text-[15px] underline underline-offset-4 hover:text-white">
-            Otevřít v mapě
+            Zavolejte {site.phone}
           </a>
         </div>
 
         <nav aria-label="Patička" className="md:col-span-4">
-          <p className="font-display text-sm font-extrabold tracking-wide text-white">Stránky</p>
-          <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 text-[15px]">
-            {[...nav, { href: "/jak-na-ridicak", label: "Jak na řidičák" }, { href: "/reference", label: "Reference" }].map(
-              (it) => (
-                <li key={it.href}>
-                  <Link href={it.href} className="hover:text-white hover:underline">
-                    {it.label}
-                  </Link>
-                </li>
-              ),
-            )}
+          <p className="label text-white/40">Stránky</p>
+          <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[14px]">
+            {odkazy.map((it) => (
+              <li key={it.href}>
+                <Link href={it.href} className="text-white/80 hover:text-white">
+                  {it.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
+
+        <div className="md:col-span-3">
+          <p className="label text-white/40">Kontakt</p>
+          <ul className="mt-5 space-y-2.5 text-[14px] text-white/80">
+            <li>
+              <a href={site.phoneHref} className="hover:text-white">
+                +420 {site.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`} className="hover:text-white">
+                {site.email}
+              </a>
+            </li>
+            <li>
+              <a href={site.whatsapp} className="hover:text-white">
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href={site.mapsHref} className="hover:text-white">
+                {site.address.street}, {site.address.part}
+                <br />
+                {site.address.zip} {site.address.city}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-3 px-4 py-6 text-[13px] text-white/55 sm:px-6">
-          <p>
-            {site.owner}, IČO {site.ico}. Autoškola od roku {site.since}.
+      <div className="mx-auto mt-16 flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-white/10 px-4 pt-6 text-[12.5px] text-white/50 sm:px-6">
+        <div>
+          <p>© Autoškola Katka</p>
+          <p className="mt-0.5 text-[11px] text-white/35">
+            Provozovatel: {site.owner}, IČO {site.ico}
           </p>
-          <Link href="/zasady-soukromi" className="hover:text-white">
-            Zásady zpracování osobních údajů
-          </Link>
         </div>
+        <Link href="/zasady-soukromi" className="hover:text-white">
+          Zásady soukromí
+        </Link>
       </div>
     </footer>
   );

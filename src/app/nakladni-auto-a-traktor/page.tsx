@@ -43,7 +43,7 @@ export default function Nakladni() {
       <PageHead
         crumb="C, C+E, T"
         path="/nakladni-auto-a-traktor"
-        title="Nákladní auto a traktor"
+        title={<>Nákladní auto <span className="accent">a traktor</span></>}
         lead={
           <p>
             Skupiny pro práci: nákladní auto, souprava a traktor. Výcvik i zkoušky domluvíme individuálně podle
@@ -53,14 +53,14 @@ export default function Nakladni() {
       />
 
       <Container className="py-16 md:py-24">
-        <div className="divide-y divide-line border-y-2 border-ink">
+        <div className="divide-y divide-line border-y border-line">
           {bloky.map((b) => (
             <section key={b.code} className="reveal grid gap-6 py-10 md:grid-cols-12 md:gap-8">
               <div className="md:col-span-2">
                 <GroupSign code={b.code} size="lg" />
               </div>
               <div className="md:col-span-5">
-                <h2 className="text-[28px] font-black sm:text-[34px]">{b.nazev}</h2>
+                <h2 className="text-[28px] font-medium sm:text-[34px]">{b.nazev}</h2>
                 <p className="mt-3 text-ink-soft">{b.text}</p>
               </div>
               <dl className="md:col-span-5">
@@ -68,7 +68,7 @@ export default function Nakladni() {
                   <div key={label} className="flex items-baseline justify-between gap-4 border-b border-line-soft py-3 last:border-0">
                     <dt>{label}</dt>
                     <dd className="tabular text-right">
-                      <span className="block font-display text-[24px] font-black">{kc(k.cena)}</span>
+                      <span className="block font-display text-[24px] font-medium">{kc(k.cena)}</span>
                       {k.kondicni && (
                         <span className="block text-[14px] text-mute">kondiční jízda {kc(k.kondicni)} / h</span>
                       )}

@@ -53,7 +53,7 @@ export default function JakNaRidicak() {
       <PageHead
         crumb="Jak na řidičák"
         path="/jak-na-ridicak"
-        title="Jak na řidičák, krok za krokem"
+        title={<>Jak na řidičák, <span className="accent">krok za krokem</span></>}
         lead={<p>Pět zastávek od prvního telefonátu po řidičák v peněžence. Zápis je průběžně, začít můžete kdykoli.</p>}
       />
 
@@ -64,11 +64,11 @@ export default function JakNaRidicak() {
             <div className="lane-y absolute top-2 bottom-2 left-[22px] text-line" aria-hidden="true" />
             {kroky.map((k, i) => (
               <li key={k.t} className="reveal relative grid grid-cols-[48px_1fr] gap-6 pb-12 last:pb-0">
-                <span className="relative z-10 grid size-12 place-items-center rounded-[var(--radius-plate)] bg-sign font-display text-xl font-black text-white">
+                <span className="relative z-10 grid size-12 place-items-center rounded-[var(--radius-plate)] bg-ink font-display text-xl font-medium text-white">
                   <span className="translate-y-[0.06em]">{i + 1}</span>
                 </span>
                 <div className="pt-1.5">
-                  <h2 className="text-[26px] font-black sm:text-[30px]">{k.t}</h2>
+                  <h2 className="text-[26px] font-medium sm:text-[30px]">{k.t}</h2>
                   <p className="mt-2 text-ink-soft">{k.d}</p>
                 </div>
               </li>
@@ -77,18 +77,18 @@ export default function JakNaRidicak() {
         </Container>
       </section>
 
-      <section id="dokumenty" className="scroll-mt-24 border-y border-line bg-sheet py-16 md:py-24">
+      <section id="dokumenty" className="scroll-mt-24 bg-paper-2 py-16 md:py-24">
         <Container className="grid gap-10 md:grid-cols-12">
           <div className="reveal md:col-span-4">
-            <h2 className="text-[30px] font-black sm:text-[36px]">Ke stažení</h2>
+            <h2 className="text-[30px] font-medium sm:text-[36px]">Ke stažení</h2>
             <p className="mt-4 text-ink-soft">Vytiskněte, vyplňte a přineste s sebou. Nebo je vyplníme na místě.</p>
           </div>
-          <ul className="reveal border-t-2 border-ink md:col-span-8">
+          <ul className="reveal border-t border-line md:col-span-8">
             {dokumenty.map((d) => (
               <li key={d.href} className="border-b border-line">
                 <a href={d.href} className="group flex items-center justify-between gap-6 py-5" download>
                   <span>
-                    <span className="block font-display text-[22px] font-extrabold group-hover:text-sign group-hover:underline">
+                    <span className="block font-display text-[22px] font-medium group-hover:text-sign group-hover:underline">
                       {d.nazev}
                     </span>
                     <span className="block text-ink-soft">{d.popis}</span>
@@ -100,7 +100,7 @@ export default function JakNaRidicak() {
             <li className="border-b border-line">
               <a href="https://etesty2.mdcr.cz/" className="group flex items-center justify-between gap-6 py-5">
                 <span>
-                  <span className="block font-display text-[22px] font-extrabold group-hover:text-sign group-hover:underline">
+                  <span className="block font-display text-[22px] font-medium group-hover:text-sign group-hover:underline">
                     Testy online
                   </span>
                   <span className="block text-ink-soft">Oficiální zkušební testy ministerstva dopravy</span>

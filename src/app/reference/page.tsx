@@ -18,7 +18,7 @@ export default function Reference() {
       <PageHead
         crumb="Reference"
         path="/reference"
-        title="Co píšou absolventi"
+        title={<>Co píšou <span className="accent">absolventi</span></>}
         lead={
           <p>
             Hodnocení z nezávislého katalogu vsechny-autoskoly.cz, od nejnovějších. Text je původní, jen
@@ -35,7 +35,7 @@ export default function Reference() {
       <Container className="py-16 md:py-24">
         {roky.map((y) => (
           <section key={y} className="reveal grid gap-6 border-t border-line py-10 md:grid-cols-12 md:gap-8">
-            <h2 className="tabular font-display text-[40px] leading-none font-black text-sign md:col-span-2">{y}</h2>
+            <h2 className="tabular font-display text-[40px] leading-none font-medium text-sign md:col-span-2">{y}</h2>
             <div className="space-y-10 md:col-span-10 md:columns-2 md:gap-12 md:space-y-0">
               {reference
                 .filter((r) => rok(r.datum) === y)

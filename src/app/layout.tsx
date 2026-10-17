@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Overpass, Overpass_Mono } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
@@ -7,16 +7,17 @@ import { JsonLd, localBusiness } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const overpass = Overpass({
-  variable: "--font-overpass",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "700", "800", "900"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
-const overpassMono = Overpass_Mono({
-  variable: "--font-overpass-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin", "latin-ext"],
-  weight: ["500"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -37,14 +38,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f2f4f6",
+  themeColor: "#fafaf7",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="cs"
-      className={`${overpass.variable} ${overpassMono.variable} antialiased`}
+      className={`${playfair.variable} ${inter.variable} antialiased`}
     >
       <head>
         <script
