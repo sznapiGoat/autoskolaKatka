@@ -77,11 +77,11 @@ export default function Prezkouseni() {
               <section key={d.id} id={d.id} className="bg-sheet p-6 sm:p-10">
                 <h3 className="text-[28px] font-medium sm:text-[32px]">{d.nazev}</h3>
                 <p className="mt-4 text-ink-soft">{d.uvod}</p>
-                <p className="mt-8 label">Co přinést</p>
-                <ul className="mt-3 border-t border-line">
+                <p className="mt-8 text-[13px] font-medium text-mute">Co přinést</p>
+                <ul className="mt-2">
                   {d.prinest.map((p) => (
-                    <li key={p} className="flex gap-3 border-b border-line py-3">
-                      <span aria-hidden="true" className="mt-[0.55em] size-2 shrink-0 bg-ink" />
+                    <li key={p} className="flex gap-3 py-2">
+                      <span aria-hidden="true" className="mt-[0.55em] size-2 shrink-0 rounded-full bg-signal" />
                       {p}
                     </li>
                   ))}

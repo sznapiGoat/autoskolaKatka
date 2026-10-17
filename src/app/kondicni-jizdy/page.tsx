@@ -85,11 +85,19 @@ export default function Kondicni() {
       <section className="bg-paper-2 py-16 md:py-24">
         <Container className="grid gap-12 md:grid-cols-12">
           <h2 className="reveal text-[30px] font-medium sm:text-[36px] md:col-span-4">Sazby za hodinu</h2>
-          <dl className="reveal border-t border-line md:col-span-8">
-            {sazby.map(([label, cena]) => (
-              <div key={label} className="flex items-baseline justify-between gap-6 border-b border-line py-4">
-                <dt>{label}</dt>
-                <dd className="tabular font-display text-[22px] font-medium whitespace-nowrap">{kc(cena)}</dd>
+          <dl className="reveal grid grid-cols-2 gap-3 md:col-span-8 lg:grid-cols-3">
+            {sazby.map(([label, cena], i) => (
+              <div
+                key={label}
+                className={`flex flex-col justify-between gap-4 rounded-3xl p-5 ${
+                  i === 0 ? "bg-night text-white shadow-lift" : "border border-ink/5 bg-sheet shadow-soft"
+                }`}
+              >
+                <dt className={`text-[14px] ${i === 0 ? "text-white/70" : "text-ink-soft"}`}>{label}</dt>
+                <dd className="tabular font-display text-[26px] leading-none whitespace-nowrap">
+                  {kc(cena)}
+                  <span className={`text-[14px] ${i === 0 ? "text-white/60" : "text-mute"}`}> / h</span>
+                </dd>
               </div>
             ))}
           </dl>

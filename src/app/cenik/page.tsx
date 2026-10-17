@@ -63,9 +63,9 @@ export default function Cenik() {
           <div>
             <h2 className="text-[26px] font-medium sm:text-[30px]">Poplatky za zkoušky</h2>
             <p className="mt-2 text-[15px] text-mute">Platí se zkušebnímu komisaři v den zkoušky.</p>
-            <dl className="mt-6 border-t border-line">
+            <dl className="mt-6 space-y-3 rounded-3xl border border-ink/5 bg-sheet p-6 shadow-soft">
               {poplatkyZkousejicimu.map(([l, v]) => (
-                <div key={l} className="flex items-baseline justify-between gap-6 border-b border-line py-3">
+                <div key={l} className="flex items-baseline justify-between gap-6">
                   <dt>{l}</dt>
                   <dd className="tabular font-bold whitespace-nowrap">{v}</dd>
                 </div>
@@ -75,9 +75,9 @@ export default function Cenik() {
           <div>
             <h2 className="text-[26px] font-medium sm:text-[30px]">Ostatní</h2>
             <p className="mt-2 text-[15px] text-mute">Platí se autoškole.</p>
-            <dl className="mt-6 border-t border-line">
+            <dl className="mt-6 space-y-3 rounded-3xl border border-ink/5 bg-sheet p-6 shadow-soft">
               {poplatkyAutoskole.map(([l, v]) => (
-                <div key={l} className="flex items-baseline justify-between gap-6 border-b border-line py-3">
+                <div key={l} className="flex items-baseline justify-between gap-6">
                   <dt>{l}</dt>
                   <dd className="text-right font-bold">{v}</dd>
                 </div>

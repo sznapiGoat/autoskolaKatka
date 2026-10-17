@@ -64,7 +64,7 @@ export default function JakNaRidicak() {
             <div className="lane-y absolute top-2 bottom-2 left-[22px] text-line" aria-hidden="true" />
             {kroky.map((k, i) => (
               <li key={k.t} className="reveal relative grid grid-cols-[48px_1fr] gap-6 pb-12 last:pb-0">
-                <span className="relative z-10 grid size-12 place-items-center rounded-[var(--radius-plate)] bg-ink font-display text-xl font-medium text-white">
+                <span className="relative z-10 grid size-12 place-items-center rounded-2xl bg-night font-display text-xl font-medium text-white">
                   <span className="translate-y-[0.06em]">{i + 1}</span>
                 </span>
                 <div className="pt-1.5">

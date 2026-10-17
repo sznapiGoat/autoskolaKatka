@@ -18,7 +18,7 @@ export function GroupSign({ code, size = "md" }: { code: string; size?: "sm" | "
     lg: "h-20 min-w-20 rounded-3xl px-4 text-4xl shadow-lift sm:h-24 sm:min-w-24 sm:text-5xl",
   }[size];
   return (
-    <span className={`inline-grid place-items-center bg-ink font-display leading-none whitespace-nowrap text-white ${dim}`}>
+    <span className={`inline-grid place-items-center bg-night font-display leading-none whitespace-nowrap text-white ${dim}`}>
       {code}
     </span>
   );
@@ -47,7 +47,7 @@ export function PageHead({
       <JsonLd data={breadcrumbs([{ name: crumb, path }])} />
       <Container className="relative grid gap-10 pt-12 pb-14 md:grid-cols-12 md:pt-20 md:pb-20">
         <div className="rise md:col-span-8">
-          <nav aria-label="Drobečková navigace" className="label">
+          <nav aria-label="Drobečková navigace" className="flex flex-wrap gap-2 text-[13px] font-medium text-mute">
             <Link href="/" className="hover:text-ink">
               Úvod
             </Link>
@@ -137,7 +137,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
               {it.q}
               <span
                 aria-hidden="true"
-                className="grid size-9 shrink-0 place-items-center rounded-full border border-ink/10 bg-sheet font-sans text-lg leading-none transition-transform group-open:rotate-45 group-open:bg-ink group-open:text-white"
+                className="grid size-9 shrink-0 place-items-center rounded-full border border-ink/10 bg-sheet font-sans text-lg leading-none transition-transform group-open:rotate-45 group-open:bg-night group-open:text-white"
               >
                 +
               </span>
@@ -155,10 +155,9 @@ export function CallStrip({ title }: { title?: ReactNode }) {
   return (
     <section className="py-12 md:py-16">
       <Container>
-        <div className="reveal grid overflow-hidden rounded-5xl bg-ink shadow-pop md:grid-cols-2">
+        <div className="reveal grid overflow-hidden rounded-5xl bg-night shadow-pop md:grid-cols-2">
           <div className="order-2 flex flex-col justify-center p-8 text-white md:order-1 md:p-12">
-            <p className="label text-white/45">Nevíte, co vybrat?</p>
-            <h2 className="mt-4 text-[32px] md:text-[44px]">
+            <h2 className="text-[32px] md:text-[44px]">
               {title ?? (
                 <>
                   Zavolejte a <span className="italic text-signal">poradíme si.</span>
@@ -171,7 +170,7 @@ export function CallStrip({ title }: { title?: ReactNode }) {
             </p>
             <a
               href={site.phoneHref}
-              className="tabular mt-8 self-start rounded-2xl bg-paper px-6 py-4 text-[16px] font-medium text-ink shadow-lift transition-colors hover:bg-white"
+              className="tabular mt-8 self-start btn-light rounded-2xl px-6 py-4 text-[16px] font-medium shadow-lift"
             >
               Zavolat {site.phone}
             </a>
@@ -202,11 +201,11 @@ export function CallStrip({ title }: { title?: ReactNode }) {
   );
 }
 
-export function SectionHead({ label, title, intro }: { label: string; title: ReactNode; intro?: ReactNode }) {
+export function SectionHead({ label, title, intro }: { label?: string; title: ReactNode; intro?: ReactNode }) {
   return (
     <div className="reveal max-w-3xl">
-      <p className="label">{label}</p>
-      <h2 className="mt-4 text-[34px] md:text-[50px]">{title}</h2>
+      {label && <p className="label mb-4">{label}</p>}
+      <h2 className="text-[34px] md:text-[50px]">{title}</h2>
       {intro && <div className="mt-4 text-ink-soft">{intro}</div>}
     </div>
   );

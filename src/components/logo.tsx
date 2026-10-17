@@ -4,7 +4,7 @@ export function Plate({ className = "size-9", tone = "ink" }: { className?: stri
     <span
       aria-hidden="true"
       className={`grid shrink-0 place-items-center rounded-2xl font-display text-lg italic ${
-        tone === "ink" ? "bg-ink text-paper" : "bg-signal text-white"
+        tone === "ink" ? "bg-night text-white" : "bg-signal text-white"
       } ${className}`}
     >
       <span className="-translate-y-px">k</span>

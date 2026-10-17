@@ -6,7 +6,7 @@ const odkazy = [...nav, { href: "/jak-na-ridicak", label: "Jak na řidičák" },
 
 export function Footer() {
   return (
-    <footer className="mt-8 bg-ink pt-20 pb-8 text-[#e7e5de]">
+    <footer className="mt-8 bg-night pt-20 pb-8 text-[#e7e5de]">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-2.5">
@@ -20,14 +20,14 @@ export function Footer() {
           </p>
           <a
             href={site.phoneHref}
-            className="tabular mt-7 inline-block rounded-2xl bg-paper px-5 py-3.5 text-[15px] font-medium text-ink transition-colors hover:bg-white"
+            className="tabular mt-7 inline-block btn-light rounded-2xl px-5 py-3.5 text-[15px] font-medium"
           >
-            Zavolejte {site.phone}
+            Zavolat {site.phone}
           </a>
         </div>
 
         <nav aria-label="Patička" className="md:col-span-4">
-          <p className="label text-white/40">Stránky</p>
+          <p className="text-[13px] font-medium text-white/50">Stránky</p>
           <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[14px]">
             {odkazy.map((it) => (
               <li key={it.href}>
@@ -40,7 +40,7 @@ export function Footer() {
         </nav>
 
         <div className="md:col-span-3">
-          <p className="label text-white/40">Kontakt</p>
+          <p className="text-[13px] font-medium text-white/50">Kontakt</p>
           <ul className="mt-5 space-y-2.5 text-[14px] text-white/80">
             <li>
               <a href={site.phoneHref} className="hover:text-white">

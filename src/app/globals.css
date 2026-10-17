@@ -16,6 +16,8 @@
   --color-sign: oklch(0.47 0.14 25);
   --color-signal: oklch(0.74 0.13 25);
   --color-signal-soft: oklch(0.95 0.04 25);
+  /* Tmavá plocha, která zůstává tmavá i v tmavém režimu: patička, pás s fotkou, dlaždice skupin */
+  --color-night: #0e0f12;
 
   --font-display: var(--font-playfair), Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -33,7 +35,64 @@
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
+  --btn-bg: #0e0f12;
+  --btn-bg-hover: #1d1f25;
+  --btn-fg: #fafaf7;
+  --glass-bg: rgba(250, 250, 247, 0.72);
+}
+
+/* Tmavý režim podle nastavení systému. Stejná paleta, korál zůstává jediným akcentem. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #121214;
+    --color-paper-2: #18181b;
+    --color-sheet: #1d1d21;
+    --color-ink: #f1eee8;
+    --color-ink-hover: #ffffff;
+    --color-ink-soft: #b7b4ad;
+    --color-mute: #95928b;
+    --color-line: #2d2d32;
+    --color-line-soft: #252529;
+    --color-sign: oklch(0.8 0.1 25);
+    --color-signal-soft: oklch(0.3 0.05 25);
+    --color-night: #212126;
+    --btn-bg: #f1eee8;
+    --btn-bg-hover: #ffffff;
+    --btn-fg: #121214;
+    --glass-bg: rgba(24, 24, 27, 0.72);
+    --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+    --shadow-lift: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 50px rgba(0, 0, 0, 0.35);
+    --shadow-pop: 0 2px 4px rgba(0, 0, 0, 0.3), 0 32px 80px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Hlavní tlačítko. Ve světlém režimu inkoustové, v tmavém světlé. Při stisku se lehce zmáčkne. */
+.btn {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  transition:
+    background-color 0.2s,
+    transform 0.15s;
+}
+.btn:hover {
+  background: var(--btn-bg-hover);
+}
+/* Světlé tlačítko na tmavé ploše (patička, pás s fotkou) */
+.btn-light {
+  background: #fafaf7;
+  color: #0e0f12;
+  transition:
+    background-color 0.2s,
+    transform 0.15s;
+}
+.btn-light:hover {
+  background: #ffffff;
+}
+.btn:active,
+.btn-light:active,
+.press:active {
+  transform: scale(0.98);
 }
 
 html {
@@ -55,7 +114,7 @@ h3 {
   font-family: var(--font-display);
   font-weight: 500;
   text-wrap: balance;
-  line-height: 1.04;
+  line-height: 1.1;
   letter-spacing: -0.015em;
 }
 
@@ -67,6 +126,7 @@ p {
 .accent {
   font-style: italic;
   color: var(--color-sign);
+  padding-bottom: 0.06em;
 }
 
 /* Malý popisek nad nadpisem s linkou vlevo */
@@ -92,13 +152,21 @@ p {
 }
 
 .glass {
-  background: rgba(250, 250, 247, 0.72);
+  background: var(--glass-bg);
   -webkit-backdrop-filter: saturate(160%) blur(18px);
   backdrop-filter: saturate(160%) blur(18px);
   border: 1px solid rgba(14, 15, 18, 0.06);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.5) inset,
     0 8px 28px rgba(14, 15, 18, 0.06);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: var(--color-paper);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 .hero-glow {

@@ -38,7 +38,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fafaf7",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafaf7" },
+    { media: "(prefers-color-scheme: dark)", color: "#121214" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -57,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <JsonLd data={localBusiness} />
         <a
           href="#obsah"
-          className="sr-only z-50 bg-ink px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3"
+          className="btn sr-only z-50 px-4 py-2 focus:not-sr-only focus:fixed focus:left-3 focus:top-3"
         >
           Přeskočit na obsah
         </a>

@@ -124,19 +124,19 @@ export default function SkupinaB() {
         <aside className="md:col-span-4 md:col-start-9">
           <div className="space-y-8 md:sticky md:top-24">
             <div className="glass rounded-3xl px-5 py-4">
-              <p className="label">Splátky</p>
+              <p className="text-[13px] font-medium text-mute">Splátky</p>
               <p className="mt-1 text-ink-soft">Kurz můžete platit po částech, bez navýšení.</p>
             </div>
             <div className="glass rounded-3xl px-5 py-4">
-              <p className="label">Výuka v cizím jazyce</p>
+              <p className="text-[13px] font-medium text-mute">Výuka v cizím jazyce</p>
               <p className="mt-1 text-ink-soft">Jde to, cenu domluvíme podle náročnosti předem.</p>
             </div>
             <div className="glass rounded-3xl px-5 py-4">
-              <p className="label">Dárkový poukaz</p>
+              <p className="text-[13px] font-medium text-mute">Dárkový poukaz</p>
               <p className="mt-1 text-ink-soft">Řidičák jako dárek k osmnáctinám. Poukaz platí 365 dní.</p>
             </div>
             <div className="glass rounded-3xl px-5 py-4">
-              <p className="label">Papíry k přihlášce</p>
+              <p className="text-[13px] font-medium text-mute">Papíry k přihlášce</p>
               <p className="mt-1 text-ink-soft">
                 Přihláška a posudek od lékaře.{" "}
                 <Link href="/jak-na-ridicak#dokumenty" className="text-sign underline underline-offset-4">

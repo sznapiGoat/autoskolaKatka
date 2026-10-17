@@ -28,7 +28,7 @@ export default function Kontakt() {
       <Container className="grid gap-16 py-16 md:grid-cols-12 md:py-24">
         <div className="space-y-12 md:col-span-6">
           <div>
-            <h2 className="label">Telefon</h2>
+            <h2 className="text-[13px] font-medium text-mute">Telefon</h2>
             <a
               href={site.phoneHref}
               className="tabular mt-2 block font-display text-[44px] leading-none font-medium hover:text-sign sm:text-[56px]"
@@ -44,14 +44,14 @@ export default function Kontakt() {
           </div>
 
           <div>
-            <h2 className="label">E-mail</h2>
+            <h2 className="text-[13px] font-medium text-mute">E-mail</h2>
             <a href={`mailto:${site.email}`} className="mt-2 block text-[22px] font-bold hover:text-sign hover:underline">
               {site.email}
             </a>
           </div>
 
           <div>
-            <h2 className="label">Učebna</h2>
+            <h2 className="text-[13px] font-medium text-mute">Učebna</h2>
             <address className="mt-2 text-[22px] leading-snug font-bold not-italic">
               {site.address.street}
               <br />

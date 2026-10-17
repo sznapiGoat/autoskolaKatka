@@ -59,7 +59,7 @@ export function CallbackForm() {
   }
 
   const field =
-    "mt-2 block w-full rounded-[var(--radius-plate)] border border-line bg-sheet px-4 py-3 text-[17px] outline-none transition-colors focus:border-sign";
+    "mt-2 block w-full rounded-2xl border border-line bg-sheet px-4 py-3 text-[17px] outline-none transition-colors focus:border-sign";
 
   return (
     <form onSubmit={onSubmit} className="space-y-6 border-t border-line pt-8" noValidate={false}>
@@ -111,7 +111,7 @@ export function CallbackForm() {
       <button
         type="submit"
         disabled={stav === "odesila"}
-        className="rounded-2xl bg-ink px-6 py-3.5 text-[15px] font-medium text-white shadow-lift transition-colors hover:bg-ink-hover disabled:opacity-60"
+        className="btn rounded-2xl px-6 py-3.5 text-[15px] font-medium shadow-lift disabled:opacity-60"
       >
         {stav === "odesila" ? "Odesílám" : "Zavolejte mi"}
       </button>

@@ -63,6 +63,7 @@ const kurzy = [
     nazev: "Po zákazu řízení a po 12 bodech",
     pozn: "se vším papírováním poradíme",
     cena: "6 000 Kč",
+    tint: true,
   },
 ];
 
@@ -87,9 +88,19 @@ const faq = [
   },
 ];
 
-const vybrane = ["Eliška", "Michal Pohl", "Jaroslava Jírová", "Zdeněk Štěpánek"].map(
-  (j) => reference.find((r) => r.jmeno === j)!,
-);
+// Krátké výřezy z původních hodnocení, aby citace nepřesáhla tři řádky. Celé texty jsou na /reference.
+const vyrez = (jmeno: string, text: string) => {
+  const r = reference.find((x) => x.jmeno === jmeno)!;
+  if (!r.text.toLowerCase().includes(text.replace(/\.$/, "").toLowerCase())) throw new Error(`Výřez nesedí na hodnocení ${jmeno}`);
+  return { ...r, text };
+};
+
+const hlavni = vyrez("Jaroslava Jírová", "Doporučuji všem, co se bojí. Tady se bát nebudete.");
+const dalsi = [
+  vyrez("Eliška", "Katka je velice trpělivá a vše dokáže moc dobře vysvětlit."),
+  vyrez("Michal Pohl", "Když řídíte poprvé, nejste nervózní a nestresuje vás nikdo."),
+  vyrez("Zdeněk Štěpánek", "Všechno, čím si nebudete jisti, vám ukáže, popřípadě poradí."),
+];
 
 export default function Home() {
   return (
@@ -100,12 +111,7 @@ export default function Home() {
       <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
         <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
         <Container className="relative pt-12 pb-16 md:pt-20 md:pb-24">
-          <p className="rise glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] text-ink-soft">
-            <span className="size-1.5 rounded-full bg-signal" aria-hidden="true" />
-            Zápis průběžně <span className="text-mute">·</span> Bílina a okolí
-          </p>
-
-          <h1 className="rise mt-6 text-[46px] leading-[0.98] sm:text-[66px] md:text-[88px]" style={{ animationDelay: ".08s" }}>
+          <h1 className="rise text-[46px] leading-[1.05] sm:text-[66px] md:text-[84px]" style={{ animationDelay: ".08s" }}>
             Řidičák v&nbsp;Bílině,
             <br />
             <span className="accent">v klidu</span> a bez křiku.
@@ -114,7 +120,7 @@ export default function Home() {
           <div className="rise mt-8 md:mt-10" style={{ animationDelay: ".16s" }}>
             <p className="max-w-[50ch] text-[16px] text-ink-soft md:text-[17px]">
               <strong className="font-medium text-ink">Autoškola Katka</strong> v Chotějovicích u Bíliny. Od roku{" "}
-              {site.since} učí řídit Kateřina Krajníková: lidsky, trpělivě a tempem, které sedne <em>vám</em>.
+              {site.since} učí Kateřina Krajníková, trpělivě a vaším tempem.
             </p>
 
             <ul className="mt-6 flex flex-wrap gap-1.5" aria-label="Skupiny řidičského oprávnění">
@@ -124,12 +130,12 @@ export default function Home() {
                     href={s.href}
                     className={`inline-flex min-w-14 flex-col items-center rounded-2xl px-3 py-2 transition-colors ${
                       s.primary
-                        ? "bg-ink text-white shadow-lift hover:bg-ink-hover"
-                        : "border border-ink/10 bg-white/70 text-ink hover:bg-white"
+                        ? "btn shadow-lift"
+                        : "press border border-ink/10 bg-sheet/70 text-ink hover:bg-sheet"
                     }`}
                   >
                     <span className="font-display text-[16px] leading-none">{s.id}</span>
-                    <span className={`mt-1 text-[10px] ${s.primary ? "text-white/65" : "text-mute"}`}>{s.label}</span>
+                    <span className={`mt-1 text-[10px] ${s.primary ? "opacity-70" : "text-mute"}`}>{s.label}</span>
                   </Link>
                 </li>
               ))}
@@ -138,24 +144,17 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={site.phoneHref}
-                className="tabular inline-flex items-center justify-center rounded-3xl bg-ink px-6 py-4 text-[15px] font-medium text-white shadow-lift transition-colors hover:bg-ink-hover"
+                className="btn tabular inline-flex items-center justify-center rounded-2xl px-6 py-4 text-[15px] font-medium shadow-lift"
               >
-                Zavolejte {site.phone}
+                Zavolat {site.phone}
               </a>
               <Link
                 href="/cenik"
-                className="inline-flex items-center justify-center gap-2 rounded-3xl border border-ink/10 px-6 py-4 text-[15px] font-medium transition-colors hover:bg-ink/5"
+                className="press inline-flex items-center justify-center gap-2 rounded-2xl border border-ink/10 px-6 py-4 text-[15px] font-medium transition-colors hover:bg-ink/5"
               >
                 Ceník a kurzy <span aria-hidden="true">→</span>
               </Link>
             </div>
-            <p className="mt-3 text-[13.5px] text-mute">
-              Nejraději si popovídáme po telefonu. Nebo{" "}
-              <Link href="/kontakt#formular" className="text-ink-soft underline underline-offset-2 hover:text-ink">
-                nechte číslo a zavoláme vám
-              </Link>
-              .
-            </p>
           </div>
 
           <div className="rise relative mt-12 md:mt-16" style={{ animationDelay: ".24s" }}>
@@ -184,7 +183,6 @@ export default function Home() {
       <section className="py-20 md:py-28">
         <Container>
           <SectionHead
-            label="Kurzy a ceny"
             title={
               <>
                 Vyberte si <span className="accent">svůj</span> řidičák.
@@ -198,8 +196,10 @@ export default function Home() {
                   href={k.href}
                   className={`group flex h-full flex-col gap-3 rounded-3xl p-6 transition-shadow ${
                     k.featured
-                      ? "bg-ink text-white shadow-pop"
-                      : "border border-ink/5 bg-sheet shadow-soft hover:shadow-lift"
+                      ? "bg-night text-white shadow-pop ring-1 ring-white/10"
+                      : k.tint
+                        ? "bg-signal-soft shadow-soft hover:shadow-lift"
+                        : "border border-ink/5 bg-sheet shadow-soft hover:shadow-lift"
                   }`}
                 >
                   <span className={`text-[11px] tracking-[0.16em] uppercase ${k.featured ? "text-white/50" : "text-mute"}`}>
@@ -240,7 +240,6 @@ export default function Home() {
       <section className="bg-paper-2 py-20 md:py-28">
         <Container>
           <SectionHead
-            label="O nás"
             title={
               <>
                 Autoškola s <span className="accent">lidským přístupem.</span>
@@ -252,7 +251,7 @@ export default function Home() {
               <div className="flex items-center gap-5">
                 <span
                   aria-hidden="true"
-                  className="grid size-20 shrink-0 place-items-center rounded-full bg-signal font-display text-[28px] text-ink"
+                  className="grid size-20 shrink-0 place-items-center rounded-full bg-signal font-display text-[28px] text-[#0e0f12]"
                 >
                   KK
                 </span>
@@ -311,7 +310,7 @@ export default function Home() {
             <div className="lane absolute top-7 right-[12%] left-[12%] hidden text-ink/25 md:block" aria-hidden="true" />
             {kroky.map((k, i) => (
               <li key={k.t} className="relative flex gap-4 rounded-3xl border border-ink/5 bg-sheet p-4 shadow-soft md:block md:border-0 md:bg-transparent md:p-0 md:text-center md:shadow-none">
-                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-ink font-display text-[17px] text-white shadow-lift md:mx-auto md:size-14">
+                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-night font-display text-[17px] text-white shadow-lift md:mx-auto md:size-14">
                   {i + 1}
                 </span>
                 <div>
@@ -337,7 +336,6 @@ export default function Home() {
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHead
-              label="Reference"
               title={
                 <>
                   Co říkají <span className="accent">absolventi.</span>
@@ -348,22 +346,31 @@ export default function Home() {
               Všechna hodnocení
             </Link>
           </div>
-          <ul className="reveal mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {vybrane.map((r) => (
-              <li key={r.jmeno}>
-                <Card className="flex h-full flex-col gap-4 p-6">
-                  <span aria-hidden="true" className="font-display text-[44px] leading-none text-signal">
-                    “
-                  </span>
-                  <blockquote className="flex-1 text-[14px] leading-relaxed text-ink-soft">{r.text}</blockquote>
-                  <p className="border-t border-line pt-3 text-[13px]">
-                    <span className="font-medium">{r.jmeno}</span>
-                    <span className="text-mute">, {rok(r.datum)}</span>
-                  </p>
-                </Card>
-              </li>
-            ))}
-          </ul>
+          {/* Jedna velká citace a tři krátké vedle, bez karet: jiné rozvržení než karty kurzů výš */}
+          <div className="reveal mt-12 grid gap-10 md:grid-cols-12 md:gap-12">
+            <figure className="md:col-span-7">
+              <blockquote className="font-display text-[30px] leading-[1.2] md:text-[42px]">
+                <span className="text-signal">„</span>
+                {hlavni.text}
+                <span className="text-signal">“</span>
+              </blockquote>
+              <figcaption className="mt-6 text-[14px] text-ink-soft">
+                <span className="font-medium text-ink">{hlavni.jmeno}</span>, {rok(hlavni.datum)}
+              </figcaption>
+            </figure>
+            <ul className="space-y-8 md:col-span-5 md:border-l md:border-line md:pl-10">
+              {dalsi.map((r) => (
+                <li key={r.jmeno}>
+                  <figure>
+                    <blockquote className="text-[16px] text-ink">„{r.text}“</blockquote>
+                    <figcaption className="mt-2 text-[13px] text-mute">
+                      {r.jmeno}, {rok(r.datum)}
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </div>
           <p className="mt-6 text-[13px] text-mute">
             Hodnocení z nezávislého katalogu{" "}
             <a href={site.reviewsHref} className="underline underline-offset-2 hover:text-ink">
