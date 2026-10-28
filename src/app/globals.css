@@ -19,9 +19,9 @@
   /* Tmavá plocha: patička, pás s fotkou, dlaždice skupin */
   --color-night: #0e0f12;
 
-  --font-display: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-literata), Georgia, serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 
   --radius-plate: 2rem;
   --radius-2xl: 1.25rem;
@@ -88,10 +88,19 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   text-wrap: balance;
   line-height: 1.1;
   letter-spacing: -0.025em;
+}
+
+/* Literata je volně prostrkaná, velké nadpisy a čísla stahujeme víc */
+h1 {
+  letter-spacing: -0.035em;
+}
+
+.font-display {
+  letter-spacing: -0.02em;
 }
 
 p {

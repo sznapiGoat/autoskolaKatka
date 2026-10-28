@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Schibsted_Grotesk } from "next/font/google";
+import { Figtree, Literata } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
@@ -7,12 +7,17 @@ import { JsonLd, localBusiness } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-// Jedno písmo pro nadpisy i text
-const schibsted = Schibsted_Grotesk({
-  variable: "--font-schibsted",
+// Nadpisy: Literata (variabilní, s optickou velikostí). Text: Figtree.
+const literata = Literata({
+  variable: "--font-literata",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  axes: ["opsz"],
+});
+
+const figtree = Figtree({
+  variable: "--font-figtree",
+  subsets: ["latin", "latin-ext"],
 });
 
 export const metadata: Metadata = {
@@ -40,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="cs"
-      className={`${schibsted.variable} antialiased`}
+      className={`${literata.variable} ${figtree.variable} antialiased`}
     >
       <head>
         <script

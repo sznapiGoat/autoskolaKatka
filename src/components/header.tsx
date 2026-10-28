@@ -28,7 +28,13 @@ export function Header() {
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-4">
       {/* Skleněná lišta. Mobilní menu leží mimo ni, aby ho backdrop-filter neuzavřel do lišty. */}
       <div className="glass mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 rounded-3xl pr-2 pl-4 sm:pl-5">
-        <Link href="/" aria-label="Autoškola Katka, úvod" className="shrink-0">
+        <Link
+          href="/"
+          aria-label="Autoškola Katka, úvod"
+          className="shrink-0"
+          // Na úvodní stránce by odkaz nic neudělal, tak aspoň vyjede nahoru
+          onClick={() => pathname === "/" && window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
           <Logo />
         </Link>
 

@@ -9,12 +9,12 @@ export function Footer() {
     <footer className="mt-8 bg-night pt-20 pb-8 text-[#e7e5de]">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 md:grid-cols-12">
         <div className="md:col-span-5">
-          <div className="flex items-center gap-2.5">
+          <Link href="/" aria-label="Autoškola Katka, úvod" className="flex w-fit items-center gap-2.5">
             <Plate tone="coral" />
             <p className="font-display text-[20px]">
               Autoškola <span className="italic">Katka</span>
             </p>
-          </div>
+          </Link>
           <p className="mt-5 max-w-[40ch] text-[14.5px] leading-relaxed text-white/60">
             Autoškola v Chotějovicích u Bíliny. Učíme řídit od roku {site.since}. Trpělivě, v klidu, bez křiku.
           </p>
