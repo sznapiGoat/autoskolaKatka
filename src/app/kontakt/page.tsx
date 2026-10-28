@@ -16,7 +16,7 @@ export default function Kontakt() {
       <PageHead
         crumb="Kontakt"
         path="/kontakt"
-        title={<>Kontakt a <span className="accent">učebna</span></>}
+        title={<>Kontakt a učebna</>}
         lead={
           <p>
             Nejrychlejší je zavolat. Pevné úřední hodiny nemám, schůzku domluvíme po telefonu podle vás. Když

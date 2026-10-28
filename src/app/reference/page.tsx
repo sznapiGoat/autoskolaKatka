@@ -18,7 +18,7 @@ export default function Reference() {
       <PageHead
         crumb="Reference"
         path="/reference"
-        title={<>Co píšou <span className="accent">absolventi</span></>}
+        title={<>Co píšou absolventi</>}
         lead={
           <p>
             Hodnocení z nezávislého katalogu vsechny-autoskoly.cz, od nejnovějších. Text je původní, jen

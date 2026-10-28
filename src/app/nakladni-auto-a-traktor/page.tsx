@@ -43,7 +43,7 @@ export default function Nakladni() {
       <PageHead
         crumb="C, C+E, T"
         path="/nakladni-auto-a-traktor"
-        title={<>Nákladní auto <span className="accent">a traktor</span></>}
+        title={<>Nákladní auto a traktor</>}
         lead={
           <p>
             Skupiny pro práci: nákladní auto, souprava a traktor. Výcvik i zkoušky domluvíme individuálně podle

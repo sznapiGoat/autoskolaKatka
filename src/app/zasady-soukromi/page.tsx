@@ -24,7 +24,7 @@ export default function Zasady() {
       <PageHead
         crumb="Zásady zpracování osobních údajů"
         path="/zasady-soukromi"
-        title={<>Zásady zpracování <span className="accent">osobních údajů</span></>}
+        title={<>Zásady zpracování osobních údajů</>}
         lead={
           <p>
             Jak nakládám s údaji, které pošlete přes formulář na tomto webu. Zpracovávám jen to, co je potřeba,

@@ -51,7 +51,7 @@ export default function Kondicni() {
       <PageHead
         crumb="Kondiční jízdy"
         path="/kondicni-jizdy"
-        title={<>Kondiční jízdy pro řidiče, kteří <span className="accent">chtějí zase jezdit</span></>}
+        title={<>Kondiční jízdy pro řidiče, kteří chtějí zase jezdit</>}
         lead={
           <p>
             Máte řidičák, ale za volantem se necítíte dobře? Jedna hodina s instruktorkou vedle vás často

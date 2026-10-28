@@ -17,7 +17,7 @@ export default function Cenik() {
       <PageHead
         crumb="Ceník"
         path="/cenik"
-        title={<>Ceník <span className="accent">kurzů</span></>}
+        title={<>Ceník kurzů</>}
         lead={
           <p>
             Platí od {site.priceListValidFrom}. Ceny jsou v Kč, autoškola není plátcem DPH. Poplatek za

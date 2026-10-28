@@ -43,7 +43,6 @@ export function PageHead({
 }) {
   return (
     <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
-      <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
       <JsonLd data={breadcrumbs([{ name: crumb, path }])} />
       <Container className="relative grid gap-10 pt-12 pb-14 md:grid-cols-12 md:pt-20 md:pb-20">
         <div className="rise md:col-span-8">

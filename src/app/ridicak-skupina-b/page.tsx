@@ -44,7 +44,7 @@ export default function SkupinaB() {
       <PageHead
         crumb="Řidičák B"
         path="/ridicak-skupina-b"
-        title={<>Řidičák na auto, <span className="accent">skupina&nbsp;B</span></>}
+        title={<>Řidičák na auto, skupina&nbsp;B</>}
         lead={
           <p>
             Nejčastější kurz autoškoly. Teorie v učebně v Chotějovicích, jízdy v běžném provozu po Bílině a

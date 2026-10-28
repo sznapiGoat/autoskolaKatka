@@ -109,7 +109,6 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
-        <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
         <Container className="relative pt-12 pb-16 md:pt-20 md:pb-24">
           <h1 className="rise text-[46px] leading-[1.05] sm:text-[66px] md:text-[84px]" style={{ animationDelay: ".08s" }}>
             Řidičák v&nbsp;Bílině,
@@ -168,13 +167,10 @@ export default function Home() {
                 className="object-cover object-[50%_60%]"
               />
             </div>
-            <div className="glass absolute bottom-4 left-4 max-w-[260px] rounded-2xl px-4 py-3 md:bottom-6 md:left-6">
-              <p className="text-[11px] tracking-[0.14em] text-mute uppercase">Skupina B</p>
-              <p className="tabular mt-0.5 font-display text-3xl">
-                {kc(najdi("b").cena).replace(" Kč", "")}
-                <span className="text-lg text-mute"> Kč</span>
-              </p>
-            </div>
+            <p className="mt-4 text-[15px] text-ink-soft">
+              Řidičák na auto, skupina B, od{" "}
+              <span className="tabular font-display text-[20px] text-ink">{kc(najdi("b").cena)}</span>
+            </p>
           </div>
         </Container>
       </section>
@@ -185,7 +181,7 @@ export default function Home() {
           <SectionHead
             title={
               <>
-                Vyberte si <span className="accent">svůj</span> řidičák.
+                Vyberte si svůj řidičák.
               </>
             }
           />
@@ -242,7 +238,7 @@ export default function Home() {
           <SectionHead
             title={
               <>
-                Autoškola s <span className="accent">lidským přístupem.</span>
+                Autoškola s lidským přístupem.
               </>
             }
           />
@@ -302,7 +298,7 @@ export default function Home() {
             label="Cesta žáka"
             title={
               <>
-                Z nuly k řidičáku <span className="accent">ve čtyřech krocích.</span>
+                Z nuly k řidičáku ve čtyřech krocích.
               </>
             }
           />
@@ -338,7 +334,7 @@ export default function Home() {
             <SectionHead
               title={
                 <>
-                  Co říkají <span className="accent">absolventi.</span>
+                  Co říkají absolventi.
                 </>
               }
             />
@@ -389,7 +385,7 @@ export default function Home() {
           <div className="reveal text-center">
             <p className="label justify-center">Časté dotazy</p>
             <h2 className="mt-4 text-[34px] md:text-[50px]">
-              Otázky, které <span className="accent">slýcháme.</span>
+              Otázky, které slýcháme.
             </h2>
           </div>
           <div className="reveal mt-12">

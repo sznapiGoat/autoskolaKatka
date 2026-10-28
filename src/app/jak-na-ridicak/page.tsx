@@ -53,7 +53,7 @@ export default function JakNaRidicak() {
       <PageHead
         crumb="Jak na řidičák"
         path="/jak-na-ridicak"
-        title={<>Jak na řidičák, <span className="accent">krok za krokem</span></>}
+        title={<>Jak na řidičák, krok za krokem</>}
         lead={<p>Pět zastávek od prvního telefonátu po řidičák v peněžence. Zápis je průběžně, začít můžete kdykoli.</p>}
       />
 

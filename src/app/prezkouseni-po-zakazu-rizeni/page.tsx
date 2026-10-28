@@ -53,7 +53,7 @@ export default function Prezkouseni() {
       <PageHead
         crumb="Přezkoušení"
         path="/prezkouseni-po-zakazu-rizeni"
-        title={<>Přezkoušení <span className="accent">po zákazu řízení</span> a po 12 bodech</>}
+        title={<>Přezkoušení po zákazu řízení a po 12 bodech</>}
         lead={
           <p>
             Chcete zpátky řidičák? Bez přezkoušení z odborné způsobilosti vám ho úřad nevrátí. Autoškola Katka

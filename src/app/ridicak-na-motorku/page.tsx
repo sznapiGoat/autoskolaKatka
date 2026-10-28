@@ -27,7 +27,7 @@ export default function Motorka() {
       <PageHead
         crumb="Motorka"
         path="/ridicak-na-motorku"
-        title={<>Řidičák na <span className="accent">motorku</span> a skútr</>}
+        title={<>Řidičák na motorku a skútr</>}
         lead={
           <p>
             Čtyři skupiny podle věku a výkonu stroje. Každá stojí {kc(najdi("a").cena)}. Kdo už průkaz na menší

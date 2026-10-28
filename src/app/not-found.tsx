@@ -11,10 +11,9 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
-      <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
       <Container className="relative pt-16 pb-24 md:pt-24 md:pb-32">
         <h1 className="text-[42px] sm:text-[58px]">
-          Tahle stránka <span className="accent">tu není.</span>
+          Tahle stránka tu není.
         </h1>
         <p className="mt-6 max-w-[50ch] text-[17px] text-ink-soft">
           Možná vedl odkaz na starou verzi webu. Kurzy a ceny najdete v ceníku, nebo rovnou zavolejte.

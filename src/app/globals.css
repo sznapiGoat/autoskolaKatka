@@ -2,7 +2,7 @@
 
 @theme {
   /* Vizuál navazuje na předchozí verzi webu, která se klientce líbila:
-     teplá bílá, inkoustově černá tlačítka, korálová kurzíva v nadpisech. */
+     teplá bílá, inkoustově černá tlačítka, korálová kurzíva jen v hlavním nadpisu a v logu. */
   --color-paper: #fafaf7;
   --color-paper-2: #f2efea;
   --color-sheet: #ffffff;
@@ -19,9 +19,9 @@
   /* Tmavá plocha: patička, pás s fotkou, dlaždice skupin */
   --color-night: #0e0f12;
 
-  --font-display: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
 
   --radius-plate: 2rem;
   --radius-2xl: 1.25rem;
@@ -88,17 +88,17 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   text-wrap: balance;
   line-height: 1.1;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
 }
 
 p {
   text-wrap: pretty;
 }
 
-/* Kurzíva v nadpisech, nosný prvek původního vzhledu */
+/* Kurzíva pro zdůraznění, používat střídmě: hlavní nadpis a logo */
 .accent {
   font-style: italic;
   color: var(--color-sign);
@@ -145,12 +145,6 @@ p {
   }
 }
 
-.hero-glow {
-  background:
-    radial-gradient(55% 50% at 80% 25%, color-mix(in oklab, var(--color-signal) 26%, transparent), transparent 62%),
-    radial-gradient(45% 55% at 10% 85%, color-mix(in oklab, var(--color-signal) 12%, transparent), transparent 60%);
-}
-
 ::selection {
   background: var(--color-signal);
   color: #fff;
@@ -178,7 +172,7 @@ p {
   width: 3px;
 }
 
-/* Playfair má výchozí skloněné číslice, u cen a telefonu chceme rovné */
+/* Ceny a telefon se stejně širokými číslicemi */
 .tabular {
   font-variant-numeric: lining-nums tabular-nums;
 }
