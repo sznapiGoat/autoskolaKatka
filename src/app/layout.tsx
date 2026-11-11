@@ -45,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="cs"
+      data-scroll-behavior="smooth"
       className={`${literata.variable} ${figtree.variable} antialiased`}
     >
       <head>

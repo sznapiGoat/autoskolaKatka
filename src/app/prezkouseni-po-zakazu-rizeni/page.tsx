@@ -61,7 +61,7 @@ export default function Prezkouseni() {
           </p>
         }
         aside={
-          <div className="glass rounded-3xl px-5 py-4">
+          <div className="panel rounded-3xl px-5 py-4">
             <p className="tabular font-display text-[48px] leading-none font-medium">6&nbsp;000&nbsp;Kč</p>
             <p className="mt-2 text-ink-soft">po zákazu řízení, za skupinu. Plus 700 Kč poplatek za zkoušku.</p>
           </div>

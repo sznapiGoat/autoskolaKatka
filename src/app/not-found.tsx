@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
+    <section className="relative overflow-hidden">
       <Container className="relative pt-16 pb-24 md:pt-24 md:pb-32">
         <h1 className="text-[42px] sm:text-[58px]">
           Tahle stránka tu není.

@@ -42,7 +42,7 @@ export function PageHead({
   aside?: ReactNode;
 }) {
   return (
-    <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
+    <section className="relative overflow-hidden">
       <JsonLd data={breadcrumbs([{ name: crumb, path }])} />
       <Container className="relative grid gap-10 pt-12 pb-14 md:grid-cols-12 md:pt-20 md:pb-20">
         <div className="rise md:col-span-8">
@@ -87,7 +87,7 @@ export function PriceTable({ rows, caption }: { rows: Kurz[]; caption?: string }
       <table className="hidden w-full border-collapse text-left sm:table">
         {caption && <caption className="sr-only">{caption}</caption>}
         <thead>
-          <tr className="border-b border-line text-[11px] tracking-[0.14em] text-mute uppercase">
+          <tr className="border-b border-line text-[13px] text-mute">
             <th scope="col" className="px-3 py-3 font-medium">
               Skupina
             </th>
@@ -158,9 +158,7 @@ export function CallStrip({ title }: { title?: ReactNode }) {
           <div className="order-2 flex flex-col justify-center p-8 text-white md:order-1 md:p-12">
             <h2 className="text-[32px] md:text-[44px]">
               {title ?? (
-                <>
-                  Zavolejte a <span className="italic text-signal">poradíme si.</span>
-                </>
+                <>Zavolejte a poradíme si.</>
               )}
             </h2>
             <p className="mt-4 max-w-[42ch] text-[15px] text-white/65">

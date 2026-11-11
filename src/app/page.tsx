@@ -63,7 +63,6 @@ const kurzy = [
     nazev: "Po zákazu řízení a po 12 bodech",
     pozn: "se vším papírováním poradíme",
     cena: "6 000 Kč",
-    tint: true,
   },
 ];
 
@@ -108,7 +107,7 @@ export default function Home() {
       <JsonLd data={faqPage(faq)} />
 
       {/* HERO */}
-      <section className="relative -mt-[4.75rem] overflow-hidden pt-[4.75rem]">
+      <section className="relative overflow-hidden">
         <Container className="relative pt-12 pb-16 md:pt-20 md:pb-24">
           <h1 className="rise text-[46px] leading-[1.05] sm:text-[66px] md:text-[84px]" style={{ animationDelay: ".08s" }}>
             Řidičák v&nbsp;Bílině,
@@ -185,38 +184,33 @@ export default function Home() {
               </>
             }
           />
-          <ul className="reveal mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Rozcestník jako lístek: název vlevo, cena vpravo, celý řádek je odkaz */}
+          <ul className="reveal mt-10 border-t border-line">
             {kurzy.map((k) => (
-              <li key={k.href} className={k.featured ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}>
+              <li key={k.href} className="border-b border-line">
                 <Link
                   href={k.href}
-                  className={`group flex h-full flex-col gap-3 rounded-3xl p-6 transition-shadow ${
-                    k.featured
-                      ? "bg-night text-white shadow-pop"
-                      : k.tint
-                        ? "bg-signal-soft shadow-soft hover:shadow-lift"
-                        : "border border-ink/5 bg-sheet shadow-soft hover:shadow-lift"
-                  }`}
+                  className="group grid gap-x-8 gap-y-2 py-6 transition-colors hover:bg-ink/[0.025] sm:grid-cols-[1fr_auto] sm:items-end sm:px-4 md:py-7"
                 >
-                  <span className={`text-[11px] tracking-[0.16em] uppercase ${k.featured ? "text-white/50" : "text-mute"}`}>
-                    {k.label}
-                  </span>
-                  <span className={`font-display leading-tight ${k.featured ? "text-[30px]" : "text-[22px]"}`}>{k.nazev}</span>
-                  <span className={`text-[14px] ${k.featured ? "text-white/60" : "text-ink-soft"}`}>{k.pozn}</span>
-                  <span className="mt-auto pt-4">
-                    <span className={`block text-[12px] ${k.featured ? "text-white/50" : "text-mute"}`}>
-                      {k.od ? "od" : "cena"}
+                  <span>
+                    <span className="block text-[13px] text-mute">{k.label}</span>
+                    <span
+                      className={`mt-1 block font-display leading-tight group-hover:text-sign ${
+                        k.featured ? "text-[30px] md:text-[38px]" : "text-[24px] md:text-[28px]"
+                      }`}
+                    >
+                      {k.nazev}
                     </span>
-                    <span className={`tabular block font-display leading-none ${k.featured ? "text-[46px]" : "text-[32px]"}`}>
+                    <span className="mt-1 block text-[14.5px] text-ink-soft">{k.pozn}</span>
+                  </span>
+                  <span className="flex items-baseline gap-2 sm:justify-end">
+                    {k.od && <span className="text-[13px] text-mute">od</span>}
+                    <span className={`tabular font-display leading-none ${k.featured ? "text-[34px] md:text-[40px]" : "text-[26px] md:text-[30px]"}`}>
                       {k.cena}
                     </span>
-                  </span>
-                  <span
-                    className={`mt-2 inline-flex items-center gap-1.5 text-[13.5px] font-medium ${
-                      k.featured ? "text-white/80 group-hover:text-white" : "text-ink group-hover:text-sign"
-                    }`}
-                  >
-                    Podrobnosti <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+                    <span aria-hidden="true" className="ml-2 text-mute transition-transform group-hover:translate-x-0.5 group-hover:text-sign">
+                      →
+                    </span>
                   </span>
                 </Link>
               </li>
@@ -238,23 +232,15 @@ export default function Home() {
           <SectionHead
             title={
               <>
-                Autoškola s lidským přístupem.
+                Učí vás pořád jedna instruktorka.
               </>
             }
           />
           <div className="mt-12 grid items-start gap-8 md:grid-cols-2 md:gap-12">
             <Card className="reveal p-8 md:p-10">
-              <div className="flex items-center gap-5">
-                <span
-                  aria-hidden="true"
-                  className="grid size-20 shrink-0 place-items-center rounded-full bg-signal font-display text-[28px] text-[#0e0f12]"
-                >
-                  KK
-                </span>
-                <div>
-                  <p className="font-display text-[22px] leading-tight">Kateřina Krajníková</p>
-                  <p className="mt-1 text-[13px] text-mute">majitelka a instruktorka</p>
-                </div>
+              <div>
+                <p className="font-display text-[26px] leading-tight">Kateřina Krajníková</p>
+                <p className="mt-1 text-[14px] text-mute">majitelka a instruktorka, učí od roku {site.since}</p>
               </div>
               <p className="mt-6 text-[15px] text-ink-soft">
                 Autoškola Katka není síť poboček. Výcvik vede Katka osobně, takže víte, s kým pojedete, a nemusíte si
@@ -262,7 +248,7 @@ export default function Home() {
                 dosažení 12 bodů.
               </p>
               <p className="mt-4 text-[15px] text-ink-soft">
-                Absolventi o ní nejčastěji píšou jedno slovo: <em className="accent">trpělivá</em>.
+                Absolventi o ní nejčastěji píšou jedno slovo: <em className="font-medium text-ink">trpělivá</em>.
               </p>
             </Card>
             <div className="reveal">
@@ -302,24 +288,19 @@ export default function Home() {
               </>
             }
           />
-          <ol className="reveal relative mt-12 grid gap-4 md:grid-cols-4 md:gap-6">
-            <div className="lane absolute top-7 right-[12%] left-[12%] hidden text-ink/25 md:block" aria-hidden="true" />
+          <ol className="reveal mt-12 grid gap-x-8 gap-y-8 sm:grid-cols-2 md:grid-cols-4">
             {kroky.map((k, i) => (
-              <li key={k.t} className="relative flex gap-4 rounded-3xl border border-ink/5 bg-sheet p-4 shadow-soft md:block md:border-0 md:bg-transparent md:p-0 md:text-center md:shadow-none">
-                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-night font-display text-[17px] text-white shadow-lift md:mx-auto md:size-14">
-                  {i + 1}
-                </span>
-                <div>
-                  <p className="font-display text-[19px] md:mt-5 md:text-[20px]">{k.t}</p>
-                  <p className="mt-1 text-[13.5px] text-ink-soft md:mx-auto md:max-w-[26ch]">{k.d}</p>
-                </div>
+              <li key={k.t} className="border-t border-ink/80 pt-5">
+                <p className="tabular text-[14px] font-medium text-sign">{i + 1}. krok</p>
+                <p className="mt-2 font-display text-[22px]">{k.t}</p>
+                <p className="mt-2 text-[14.5px] text-ink-soft">{k.d}</p>
               </li>
             ))}
           </ol>
-          <div className="mt-10 text-center">
+          <div className="mt-10">
             <Link
               href="/jak-na-ridicak"
-              className="inline-flex items-center gap-2 rounded-2xl border border-ink/10 px-5 py-3 text-[14px] font-medium hover:bg-ink/5"
+              className="press inline-flex items-center gap-2 rounded-2xl border border-ink/10 px-5 py-3 text-[14px] font-medium hover:bg-ink/5"
             >
               Celý postup a dokumenty ke stažení <span aria-hidden="true">→</span>
             </Link>
@@ -383,10 +364,7 @@ export default function Home() {
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="reveal text-center">
-            <p className="label justify-center">Časté dotazy</p>
-            <h2 className="mt-4 text-[34px] md:text-[50px]">
-              Otázky, které slýcháme.
-            </h2>
+            <h2 className="text-[34px] md:text-[50px]">Časté dotazy</h2>
           </div>
           <div className="reveal mt-12">
             <Faq items={faq} />

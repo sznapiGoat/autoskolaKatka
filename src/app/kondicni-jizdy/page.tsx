@@ -59,7 +59,7 @@ export default function Kondicni() {
           </p>
         }
         aside={
-          <div className="glass rounded-3xl px-5 py-4">
+          <div className="panel rounded-3xl px-5 py-4">
             <p className="tabular font-display text-[56px] leading-none font-medium text-sign">
               {kc(najdi("b").kondicni!).replace(" Kč", "")}
             </p>

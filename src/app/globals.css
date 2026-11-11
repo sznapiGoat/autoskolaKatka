@@ -39,7 +39,8 @@
   --btn-bg: #0e0f12;
   --btn-bg-hover: #1d1f25;
   --btn-fg: #fafaf7;
-  --glass-bg: rgba(250, 250, 247, 0.72);
+  /* Křivka pro odezvu na stisk a krátké přechody */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 
@@ -47,35 +48,58 @@
 .btn {
   background: var(--btn-bg);
   color: var(--btn-fg);
-  transition:
-    background-color 0.2s,
-    transform 0.15s;
-}
-.btn:hover {
-  background: var(--btn-bg-hover);
 }
 /* Světlé tlačítko na tmavé ploše (patička, pás s fotkou) */
 .btn-light {
   background: #fafaf7;
   color: #0e0f12;
-  transition:
-    background-color 0.2s,
-    transform 0.15s;
 }
-.btn-light:hover {
-  background: #ffffff;
+.btn,
+.btn-light,
+.press {
+  transition:
+    background-color 0.2s ease,
+    transform 160ms var(--ease-out);
+}
+/* Hover jen pro myš, na dotykovém displeji by po klepnutí zůstal viset */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: var(--btn-bg-hover);
+  }
+  .btn-light:hover {
+    background: #ffffff;
+  }
 }
 .btn:active,
 .btn-light:active,
 .press:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
+}
+
+/* Ovládací prvky: bez šedého záblesku, bez čekání na dvojklik, bez označení textu při podržení */
+a,
+button,
+summary,
+[role="button"] {
+  touch-action: manipulation;
+}
+button,
+summary,
+.btn,
+.btn-light,
+.press {
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 html {
   background: var(--color-paper);
   color: var(--color-ink);
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
+  /* Kotvy (#formular, oddíly ceníku) nezajedou pod lepicí lištu */
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -114,44 +138,19 @@ p {
   padding-bottom: 0.06em;
 }
 
-/* Malý popisek nad nadpisem s linkou vlevo */
+/* Malý popisek nad nadpisem, obyčejná věta bez prostrkaných verzálek */
 .label {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-mute);
+  color: var(--color-sign);
 }
 
-.label::before {
-  content: "";
-  width: 1.5rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
-}
-
-.glass {
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: saturate(160%) blur(18px);
-  backdrop-filter: saturate(160%) blur(18px);
-  border: 1px solid rgba(14, 15, 18, 0.06);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.5) inset,
-    0 8px 28px rgba(14, 15, 18, 0.06);
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  .glass {
-    background: var(--color-paper);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
+/* Rámeček pro shrnutí a rozcestníky vedle textu */
+.panel {
+  background: var(--color-sheet);
+  border: 1px solid var(--color-line);
 }
 
 ::selection {
@@ -195,10 +194,10 @@ p {
    bez JavaScriptu zůstane obsah normálně vidět. */
 .js .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(8px);
   transition:
-    opacity 0.7s cubic-bezier(0.16, 0.84, 0.44, 1),
-    transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);
+    opacity 0.45s var(--ease-out),
+    transform 0.45s var(--ease-out);
 }
 
 .js .reveal.is-visible {
@@ -209,7 +208,7 @@ p {
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -218,7 +217,20 @@ p {
 }
 
 .rise {
-  animation: rise 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+  animation: rise 0.6s var(--ease-out) both;
+}
+
+/* Mobilní menu vyjede z místa tlačítka vpravo nahoře */
+.menu-sheet {
+  overscroll-behavior: contain;
+  transform-origin: top right;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -232,5 +244,12 @@ p {
   }
   .rise {
     animation: none;
+  }
+  .menu-sheet {
+    transition: opacity 150ms ease;
+    @starting-style {
+      opacity: 0;
+      transform: none;
+    }
   }
 }

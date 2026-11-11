@@ -25,9 +25,8 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-4">
-      {/* Skleněná lišta. Mobilní menu leží mimo ni, aby ho backdrop-filter neuzavřel do lišty. */}
-      <div className="glass mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 rounded-3xl pr-2 pl-4 sm:pl-5">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 pr-2 pl-4 sm:pr-4 sm:pl-6">
         <Link
           href="/"
           aria-label="Autoškola Katka, úvod"
@@ -73,7 +72,7 @@ export function Header() {
             onClick={() => setOpenOn(open ? null : pathname)}
             aria-expanded={open}
             aria-controls="menu"
-            className="grid size-10 place-items-center rounded-2xl hover:bg-ink/5 xl:hidden"
+            className="press grid size-11 place-items-center rounded-2xl hover:bg-ink/5 xl:hidden"
           >
             <span className="sr-only">{open ? "Zavřít menu" : "Otevřít menu"}</span>
             {open ? <X size={20} aria-hidden="true" /> : <List size={20} aria-hidden="true" />}
@@ -85,7 +84,7 @@ export function Header() {
         <nav
           id="menu"
           aria-label="Hlavní"
-          className="fixed inset-x-3 top-[5.25rem] bottom-3 overflow-y-auto rounded-3xl border border-line bg-paper p-2 shadow-pop xl:hidden"
+          className="menu-sheet fixed inset-x-3 top-[4.75rem] bottom-3 overflow-y-auto rounded-3xl border border-line bg-paper p-2 shadow-pop xl:hidden"
         >
           <ul>
             {[{ href: "/", label: "Úvod" }, ...nav, { href: "/jak-na-ridicak", label: "Jak na řidičák" }, { href: "/reference", label: "Reference" }].map(

@@ -25,7 +25,7 @@ export default function Cenik() {
           </p>
         }
         aside={
-          <nav aria-label="Oddíly ceníku" className="glass rounded-3xl px-5 py-4">
+          <nav aria-label="Oddíly ceníku" className="panel rounded-3xl px-5 py-4">
             <ul className="space-y-1.5">
               {cenik.map((o) => (
                 <li key={o.id}>
